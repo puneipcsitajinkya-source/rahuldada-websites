@@ -1,0 +1,152 @@
+:root {
+  /* --- Colour: pulled from the actual clay paanpoi + the fields & ponds around Shiroli --- */
+  --ink: #16241c;
+  --forest: #1f4d36;
+  --forest-deep: #0f2e1f;
+  --forest-soft: #2f6b49;
+  --clay: #b5622c;
+  --clay-deep: #8a4720;
+  --clay-light: #e2a06a;
+  --sky: #3e7ca6;
+  --sky-soft: #cfe3ee;
+  --sand: #f3ede1;
+  --sand-deep: #e8dfc9;
+  --cream: #fbf7ef;
+  --leaf-tint: #e8efdd;
+  --line: rgba(22, 36, 28, 0.12);
+
+  --font-display: "Fraunces", "Iowan Old Style", serif;
+  --font-body: "Work Sans", "Segoe UI", sans-serif;
+  --font-devanagari: "Noto Sans Devanagari", sans-serif;
+
+  --max-width: 1180px;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--cream);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.08;
+  margin: 0;
+  color: var(--forest-deep);
+  letter-spacing: -0.01em;
+}
+
+p { margin: 0; }
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+ul { margin: 0; padding: 0; }
+button { font-family: inherit; }
+.mr { font-family: var(--font-devanagari); }
+
+/* ---------- layout helpers ---------- */
+
+.wrap { max-width: var(--max-width); margin: 0 auto; padding: 0 24px; }
+.section { padding: 88px 0; }
+@media (max-width: 720px) { .section { padding: 56px 0; } }
+
+.section--sand { background: var(--sand); }
+.section--leaf { background: var(--leaf-tint); }
+.section--forest { background: var(--forest-deep); color: var(--sand); }
+.section--forest h1, .section--forest h2, .section--forest h3 { color: var(--cream); }
+.section--cream { background: var(--cream); }
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--clay);
+  margin-bottom: 14px;
+}
+.eyebrow::before { content: ""; width: 18px; height: 2px; background: var(--clay); border-radius: 2px; }
+.section--forest .eyebrow, .section--forest .eyebrow::before { color: var(--clay-light); background: var(--clay-light); }
+
+.kicker { max-width: 620px; font-size: 18px; color: rgba(22, 36, 28, 0.72); margin-top: 16px; }
+.section--forest .kicker { color: rgba(251, 247, 239, 0.78); }
+
+/* ---------- buttons ---------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 15px;
+  padding: 13px 26px;
+  border-radius: 4px 16px 4px 16px;
+  border: 1.5px solid transparent;
+  cursor: pointer;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease, color .18s ease;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn:focus-visible { outline: 3px solid var(--sky); outline-offset: 2px; }
+
+.btn--clay { background: var(--clay); color: var(--cream); box-shadow: 0 8px 20px -8px rgba(181, 98, 44, 0.7); }
+.btn--clay:hover { background: var(--clay-deep); }
+
+.btn--outline { background: transparent; border-color: currentColor; color: var(--forest-deep); }
+.section--forest .btn--outline { color: var(--cream); }
+
+.btn--ghost-light { background: rgba(251, 247, 239, 0.1); border-color: rgba(251, 247, 239, 0.5); color: var(--cream); }
+.btn--ghost-light:hover { background: rgba(251, 247, 239, 0.2); }
+
+/* ---------- signature: paanpoi arc divider ---------- */
+
+.arc-divider { display: block; width: 100%; height: 64px; margin: 0; }
+.arc-divider path { fill: currentColor; }
+
+/* ---------- cards ---------- */
+
+.card { background: var(--cream); border: 1px solid var(--line); border-radius: 4px 22px 4px 22px; overflow: hidden; }
+
+.tag-pill {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: var(--leaf-tint);
+  color: var(--forest);
+}
+
+.grid { display: grid; gap: 28px; }
+@media (min-width: 860px) {
+  .grid--2 { grid-template-columns: repeat(2, 1fr); }
+  .grid--3 { grid-template-columns: repeat(3, 1fr); }
+  .grid--4 { grid-template-columns: repeat(4, 1fr); }
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--forest);
+  color: var(--cream);
+  padding: 10px 16px;
+  z-index: 100;
+}
+.skip-link:focus { left: 12px; top: 12px; }
