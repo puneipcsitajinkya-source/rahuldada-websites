@@ -48,7 +48,7 @@ export default function Footer() {
             <a href={org.social.youtube} aria-label="YouTube" className="footer-social__link">
               <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
                 <path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.97C18.88 4 12 4 12 4s-6.88 0-8.59.45A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.97C5.12 20 12 20 12 20s6.88 0 8.59-.45a2.78 2.78 0 0 0 1.95-1.97A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/>
-                <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="var(--emerald-deep)"/>
+                <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="#18132B"/>
               </svg>
             </a>
           </div>
@@ -108,7 +108,7 @@ export default function Footer() {
 
       <style>{`
         .site-footer {
-          background: linear-gradient(160deg, var(--emerald-deep) 0%, #061c11 100%);
+          background: linear-gradient(160deg, #18132B 0%, #0F0A1E 100%);
           color: rgba(255,255,255,0.78);
           position: relative;
           overflow: hidden;
@@ -118,8 +118,8 @@ export default function Footer() {
           content: "";
           position: absolute;
           inset: 0;
-          background-image: radial-gradient(circle at 80% 20%, rgba(201,146,42,0.06) 0%, transparent 60%),
-                            radial-gradient(circle at 10% 80%, rgba(42,144,96,0.08) 0%, transparent 50%);
+          background-image: radial-gradient(circle at 80% 20%, rgba(124,58,237,0.12) 0%, transparent 60%),
+                            radial-gradient(circle at 10% 80%, rgba(16,185,129,0.1) 0%, transparent 50%);
           pointer-events: none;
         }
 
@@ -134,7 +134,7 @@ export default function Footer() {
           grid-template-columns: 1.6fr 1fr 1.2fr;
           gap: 56px;
           padding: 56px 0 52px;
-          border-bottom: 1px solid var(--on-dark-line);
+          border-bottom: 1px solid rgba(255,255,255,0.1);
           position: relative;
         }
         @media (max-width: 860px) {
@@ -153,16 +153,20 @@ export default function Footer() {
           margin-bottom: 10px;
           letter-spacing: -0.02em;
         }
-        .footer-brand span { color: var(--gold-light); }
+        .footer-brand span {
+          background: linear-gradient(90deg, #A78BFA, #34D399);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+        }
 
         .footer-tagline {
-          color: var(--gold-light);
+          color: #A78BFA;
           font-size: 14px;
           margin-bottom: 14px;
-          opacity: 0.9;
+          opacity: 0.95;
         }
         .footer-addr {
-          color: rgba(255,255,255,0.55);
+          color: rgba(255,255,255,0.6);
           font-size: 13.5px;
           line-height: 1.65;
           max-width: 300px;
@@ -177,27 +181,27 @@ export default function Footer() {
           display: flex;
           align-items: center;
           justify-content: center;
-          width: 38px;
-          height: 38px;
+          width: 40px;
+          height: 40px;
           border-radius: 50%;
           background: rgba(255,255,255,0.08);
-          color: rgba(255,255,255,0.72);
-          border: 1px solid rgba(255,255,255,0.12);
-          transition: background 0.2s, color 0.2s, transform 0.2s, box-shadow 0.2s;
+          color: rgba(255,255,255,0.8);
+          border: 1px solid rgba(255,255,255,0.15);
+          transition: background 0.25s, color 0.25s, transform 0.25s, box-shadow 0.25s;
         }
         .footer-social__link:hover {
-          background: var(--gold);
+          background: linear-gradient(135deg, #7C3AED 0%, #10B981 100%);
           color: var(--white);
           transform: translateY(-3px);
-          box-shadow: 0 6px 18px var(--gold-glow);
+          box-shadow: 0 8px 20px rgba(124, 58, 237, 0.4);
           border-color: transparent;
         }
 
         .footer-heading {
-          font-size: 11px;
+          font-size: 11.5px;
           text-transform: uppercase;
-          letter-spacing: 0.18em;
-          color: var(--gold-light);
+          letter-spacing: 0.16em;
+          color: #34D399;
           font-weight: 800;
           margin-bottom: 18px;
         }
@@ -211,17 +215,17 @@ export default function Footer() {
         .footer-col ul li {
           display: flex;
           align-items: center;
-          gap: 9px;
-          color: rgba(255,255,255,0.68);
+          gap: 10px;
+          color: rgba(255,255,255,0.72);
           font-size: 14px;
         }
-        .footer-col ul li svg { color: var(--gold-light); flex-shrink: 0; }
+        .footer-col ul li svg { color: #A78BFA; flex-shrink: 0; }
         .footer-col a {
-          color: rgba(255,255,255,0.72);
+          color: rgba(255,255,255,0.75);
           font-size: 14px;
           transition: color 0.2s, padding-left 0.2s;
         }
-        .footer-col a:hover { color: var(--gold-light); padding-left: 4px; }
+        .footer-col a:hover { color: #34D399; padding-left: 4px; }
 
         .footer-bottom-wrap {
           position: relative;
@@ -231,14 +235,14 @@ export default function Footer() {
           justify-content: space-between;
           align-items: center;
           gap: 12px;
-          padding: 22px 0 32px;
-          font-size: 12.5px;
-          color: rgba(255,255,255,0.4);
+          padding: 24px 0 34px;
+          font-size: 13px;
+          color: rgba(255,255,255,0.45);
           flex-wrap: wrap;
         }
         .footer-legal { display: flex; gap: 16px; }
-        .footer-legal a { color: rgba(255,255,255,0.4); transition: color 0.2s; }
-        .footer-legal a:hover { color: var(--gold-light); }
+        .footer-legal a { color: rgba(255,255,255,0.45); transition: color 0.2s; }
+        .footer-legal a:hover { color: #A78BFA; }
       `}</style>
     </footer>
   );

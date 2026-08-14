@@ -38,14 +38,18 @@ const contactDetails = [
 export default function ContactPage() {
   return (
     <>
-      {/* ---- Hero ---- */}
+      {/* ---- Hero (Light Theme: Purple + Light Green) ---- */}
       <section className="contact-hero">
-        <div className="contact-hero__bg" />
+        <div className="contact-hero__gradient" aria-hidden="true" />
+        <div className="contact-hero__orb contact-hero__orb--1" aria-hidden="true" />
+        <div className="contact-hero__orb contact-hero__orb--2" aria-hidden="true" />
+        <div className="contact-hero__grid" aria-hidden="true" />
+        <div className="contact-hero__shimmer" aria-hidden="true" />
         <div className="wrap contact-hero__inner">
-          <span className="eyebrow">Contact</span>
-          <h1>Reach us in Shiroli</h1>
-          <p className="kicker">
-            For volunteering, donations, CSR proposals or press queries —
+          <span className="eyebrow anim-hero-1">Contact</span>
+          <h1 className="anim-hero-2">Reach us in Shiroli</h1>
+          <p className="kicker anim-hero-3">
+            For volunteering, donations, CSR proposals or press queries &mdash;
             we&apos;re a small team but we do reply.
           </p>
         </div>
@@ -104,24 +108,54 @@ export default function ContactPage() {
 
       <style>{`
         .contact-hero {
-          background: linear-gradient(135deg, var(--emerald-deep) 0%, var(--emerald) 100%);
-          padding-top: 130px;
-          padding-bottom: 72px;
+          background: #FAF8FE;
+          padding-top: 140px;
+          padding-bottom: 84px;
           position: relative;
           overflow: hidden;
         }
-        .contact-hero__bg {
-          position: absolute; inset: 0;
-          background-image: radial-gradient(circle at 80% 20%, rgba(201,146,42,0.1) 0%, transparent 50%);
+        .contact-hero__gradient {
+          position: absolute; inset: 0; z-index: 0;
+          background:
+            radial-gradient(ellipse 70% 70% at 20% 30%, rgba(124, 58, 237, 0.16) 0%, transparent 65%),
+            radial-gradient(ellipse 55% 80% at 85% 45%, rgba(52, 211, 153, 0.22) 0%, transparent 60%),
+            linear-gradient(180deg, #FFFFFF 0%, #FAF8FE 100%);
+          animation: heroGradientShift 15s ease-in-out infinite alternate;
+        }
+        .contact-hero__orb {
+          position: absolute; border-radius: 50%; filter: blur(60px); pointer-events: none; z-index: 1;
+        }
+        .contact-hero__orb--1 {
+          width: 440px; height: 440px; top: -80px; right: 5%;
+          background: radial-gradient(circle, rgba(124, 58, 237, 0.22) 0%, transparent 70%);
+          animation: orbFloat2 21s ease-in-out infinite;
+        }
+        .contact-hero__orb--2 {
+          width: 320px; height: 320px; bottom: -30px; left: 12%;
+          background: radial-gradient(circle, rgba(52, 211, 153, 0.25) 0%, transparent 70%);
+          animation: orbFloat3 16s ease-in-out infinite;
+        }
+        .contact-hero__grid {
+          position: absolute; inset: 0; z-index: 1;
+          background-image: radial-gradient(circle, rgba(124, 58, 237, 0.05) 1.2px, transparent 1.2px);
+          background-size: 34px 34px;
+          animation: gridPan 40s linear infinite;
           pointer-events: none;
         }
-        .contact-hero__inner { position: relative; z-index: 1; }
+        .contact-hero__shimmer {
+          position: absolute; inset: 0; z-index: 2;
+          background: linear-gradient(115deg, transparent 30%, rgba(52, 211, 153, 0.06) 50%, transparent 70%);
+          background-size: 300% 300%;
+          animation: heroShimmer 11s linear infinite;
+          pointer-events: none;
+        }
+        .contact-hero__inner { position: relative; z-index: 3; }
         .contact-hero h1 {
-          color: #fff;
-          font-size: clamp(2rem, 4.2vw, 3rem);
+          color: var(--charcoal);
+          font-size: clamp(2.4rem, 4.6vw, 3.4rem);
           margin-top: 8px;
         }
-        .contact-hero .kicker { color: rgba(255,255,255,0.72); }
+        .contact-hero .kicker { color: var(--muted); }
 
         .contact-grid {
           display: grid;
@@ -133,16 +167,16 @@ export default function ContactPage() {
 
         .contact-info-card {
           background: var(--white);
-          border: 1px solid var(--line);
+          border: 1px solid rgba(124, 58, 237, 0.08);
           border-radius: var(--radius-lg);
-          padding: 36px;
+          padding: 38px;
           box-shadow: var(--shadow-sm);
-          border-top: 4px solid var(--emerald-mid);
+          border-top: 4px solid var(--purple);
         }
         .contact-info-card__title {
           font-size: 22px;
           font-weight: 700;
-          color: var(--emerald-deep);
+          color: var(--charcoal);
           margin-bottom: 28px;
         }
 
@@ -150,29 +184,29 @@ export default function ContactPage() {
         .contact-dl__item {
           display: flex;
           align-items: flex-start;
-          gap: 14px;
+          gap: 16px;
         }
         .contact-dl__icon {
-          width: 42px;
-          height: 42px;
-          border-radius: 10px;
-          background: var(--emerald-tint);
-          color: var(--emerald);
+          width: 44px;
+          height: 44px;
+          border-radius: 12px;
+          background: linear-gradient(135deg, var(--purple-tint), var(--green-tint));
+          color: var(--purple);
           display: flex;
           align-items: center;
           justify-content: center;
           flex-shrink: 0;
         }
         .contact-dl__label {
-          font-size: 11px;
+          font-size: 11.5px;
           font-weight: 800;
           text-transform: uppercase;
           letter-spacing: 0.1em;
-          color: var(--gold);
+          color: var(--green-deep);
           margin-bottom: 3px;
         }
         .contact-dl__value {
-          font-size: 15px;
+          font-size: 15.5px;
           color: var(--charcoal);
           margin: 0;
           line-height: 1.55;
@@ -184,7 +218,7 @@ export default function ContactPage() {
           overflow: hidden;
           height: 240px;
           box-shadow: var(--shadow-sm);
-          border: 1px solid var(--line);
+          border: 1px solid rgba(124, 58, 237, 0.1);
         }
         .map-embed iframe { width: 100%; height: 100%; border: 0; display: block; }
 
@@ -193,17 +227,18 @@ export default function ContactPage() {
           gap: 12px;
           align-items: flex-start;
           margin-top: 20px;
-          padding: 16px;
-          background: var(--parchment);
+          padding: 18px;
+          background: var(--purple-pale);
+          border: 1px solid rgba(124, 58, 237, 0.1);
           border-radius: var(--radius-md);
         }
         .contact-hours__icon { font-size: 20px; flex-shrink: 0; }
-        .contact-hours p { font-size: 13.5px; color: var(--muted); line-height: 1.6; }
+        .contact-hours p { font-size: 14px; color: var(--muted); line-height: 1.6; }
         .contact-hours strong { color: var(--charcoal); }
 
         .contact-form-card {
           background: var(--white);
-          border: 1px solid var(--line);
+          border: 1px solid rgba(124, 58, 237, 0.1);
           border-radius: var(--radius-lg);
           overflow: hidden;
           box-shadow: var(--shadow-md);
@@ -211,17 +246,15 @@ export default function ContactPage() {
           top: 96px;
         }
         .contact-form-card__header {
-          background: linear-gradient(135deg, var(--emerald-deep), var(--emerald));
-          padding: 20px 28px;
+          background: linear-gradient(135deg, #7C3AED 0%, #10B981 100%);
+          padding: 22px 28px;
           display: flex;
           align-items: center;
           gap: 12px;
-          font-size: 16px;
+          font-size: 17px;
           font-weight: 800;
           color: #fff;
         }
-        .contact-form-card__header span { font-size: 22px; }
-        .contact-form-card__body { padding: 28px; }
       `}</style>
     </>
   );

@@ -12,13 +12,13 @@ export const metadata = {
 /* ---- Icon SVGs per stat ---- */
 const statIcons = [
   /* years */
-  <svg key="y" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>,
+  <svg key="y" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>,
   /* drops */
-  <svg key="d" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden="true"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>,
+  <svg key="d" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>,
   /* water */
-  <svg key="w" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden="true"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>,
+  <svg key="w" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>,
   /* award */
-  <svg key="a" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden="true"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>,
+  <svg key="a" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>,
 ];
 
 /* ---- Focus area icons ---- */
@@ -35,46 +35,52 @@ export default function HomePage() {
   return (
     <>
       {/* ============================================================
-          HERO
+          HERO (Premium Luminous Light Theme: Purple & Light Green)
       ============================================================ */}
       <section className="hero">
-        <Image
-          src="/images/bird-paanpoi-hero.jpeg"
-          alt="A bird perched on the rim of a hand-made clay water bowl, hung in a tree"
-          fill
-          priority
-          className="hero__img"
-          sizes="100vw"
-        />
-        <div className="hero__scrim" />
+        {/* ---- Animated radiant gradient background layers ---- */}
+        <div className="hero__gradient-bg" aria-hidden="true" />
+        <div className="hero__orb hero__orb--1" aria-hidden="true" />
+        <div className="hero__orb hero__orb--2" aria-hidden="true" />
+        <div className="hero__orb hero__orb--3" aria-hidden="true" />
+        <div className="hero__orb hero__orb--4" aria-hidden="true" />
+        <div className="hero__grid-overlay" aria-hidden="true" />
+        <div className="hero__shimmer" aria-hidden="true" />
+
         <div className="hero__content wrap">
-          <p className="hero__eyebrow">
+          <p className="hero__eyebrow anim-hero-1">
             <span className="hero__eyebrow-dot" />
             Shiroli, Yavatmal · since {org.established}
           </p>
-          <h1 className="hero__title">
+          <h1 className="hero__title anim-hero-2">
             Water for the thirsty.<br />
             <em>Roots for the rains still to come.</em>
           </h1>
-          <p className="hero__lede">
+          <p className="hero__lede anim-hero-3">
             Every summer, as ponds crack dry and mercury climbs past 44 °C, we
             hang clay water bowls on ten routes for birds — and every monsoon,
             we plant the trees that will shade the next generation.
           </p>
-          <div className="hero__actions">
-            <Link href="/involved#donate" className="btn btn--gold">
+          <div className="hero__actions anim-hero-4">
+            <Link href="/involved#donate" className="btn btn--primary">
               <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
               Donate Now
             </Link>
-            <Link href="/involved#volunteer" className="btn btn--ghost-light">Become a Volunteer</Link>
-            <Link href="/work" className="btn btn--ghost-light">See Our Work</Link>
+            <Link href="/involved#volunteer" className="btn btn--outline">Become a Volunteer</Link>
+            <Link href="/work" className="btn btn--outline">See Our Work</Link>
           </div>
 
           {/* Floating trust badges */}
-          <div className="hero__badges">
-            <span className="hero__badge">✓ Registered NGO</span>
-            <span className="hero__badge">✓ 20+ Years Active</span>
-            <span className="hero__badge">✓ 3 Awards Received</span>
+          <div className="hero__badges anim-hero-5">
+            <span className="hero__badge">
+              <span className="badge-check">✓</span> Registered NGO
+            </span>
+            <span className="hero__badge">
+              <span className="badge-check">✓</span> 20+ Years Active
+            </span>
+            <span className="hero__badge">
+              <span className="badge-check">✓</span> 3 State Awards
+            </span>
           </div>
         </div>
 
@@ -85,14 +91,14 @@ export default function HomePage() {
         </div>
 
         <div className="hero__arc">
-          <ArcDivider color="var(--off-white)" />
+          <ArcDivider color="var(--white)" />
         </div>
       </section>
 
       {/* ============================================================
           IMPACT STATS
       ============================================================ */}
-      <section className="section stats-section">
+      <section className="section section--white stats-section">
         <div className="wrap">
           <div className="stats-grid">
             {impactStats.map((s, i) => (
@@ -176,7 +182,7 @@ export default function HomePage() {
                   <p className="focus-card__mr mr">{f.marathi}</p>
                   <h3 className="focus-card__title">{f.title}</h3>
                   <p className="focus-card__text">{f.summary}</p>
-                  <span className="focus-card__cta">Learn more →</span>
+                  <span className="focus-card__cta">Explore area →</span>
                 </div>
               </Link>
             ))}
@@ -190,10 +196,7 @@ export default function HomePage() {
       <section className="section section--emerald timeline-section">
         <div className="wrap timeline-grid">
           <div className="timeline-intro">
-            <span className="eyebrow" style={{ color: "var(--gold-light)" }}>
-              <span style={{ background: "var(--gold-light)", display:"inline-block", width:22, height:2, borderRadius:2 }} />
-              This Year
-            </span>
+            <span className="eyebrow">This Year</span>
             <h2 style={{ color: "#fff" }}>2026 activity so far</h2>
             <p className="kicker">
               A running log, not a promise — updated as the season moves.
@@ -209,7 +212,7 @@ export default function HomePage() {
                   }
                 </div>
                 <span className="timeline-item__label">{t.label}</span>
-                {t.done && <span className="timeline-item__done-tag">Done</span>}
+                {t.done && <span className="timeline-item__done-tag">Completed</span>}
               </li>
             ))}
           </ol>
@@ -221,9 +224,11 @@ export default function HomePage() {
       ============================================================ */}
       <section className="section section--white press-section">
         <div className="wrap">
-          <span className="eyebrow">In The News</span>
-          <h2>What local papers have covered</h2>
-          <div className="press-grid" style={{ marginTop: 40 }}>
+          <div style={{ textAlign: "center", marginBottom: 40 }}>
+            <span className="eyebrow">In The News</span>
+            <h2>What local papers have covered</h2>
+          </div>
+          <div className="press-grid">
             {press.map((p) => (
               <article key={p.headlineEn} className="press-card">
                 <div className="press-card__img-wrap">
@@ -246,16 +251,18 @@ export default function HomePage() {
       ============================================================ */}
       <section className="section section--parchment awards-section">
         <div className="wrap">
-          <span className="eyebrow">Recognition</span>
-          <h2>Honours along the way</h2>
-          <div className="awards-grid" style={{ marginTop: 40 }}>
+          <div style={{ textAlign: "center", marginBottom: 40 }}>
+            <span className="eyebrow">Recognition</span>
+            <h2>Honours along the way</h2>
+          </div>
+          <div className="awards-grid">
             {awards.map((a) => (
               <div key={a.title} className="award-card">
                 <div className="award-card__img-wrap">
                   <Image src={a.image} alt={a.title} width={400} height={280} className="award-card__img" />
                 </div>
                 <div className="award-card__body">
-                  <span className="tag-pill">{a.year}</span>
+                  <span className="tag-pill tag-pill--green">{a.year}</span>
                   <h3 className="award-card__title">{a.title}</h3>
                   <p className="award-card__detail">{a.detail}</p>
                 </div>
@@ -281,8 +288,7 @@ export default function HomePage() {
         <div className="cta-band__scrim" />
         <div className="wrap cta-band__inner">
           <div className="cta-band__text">
-            <span className="eyebrow" style={{ color: "var(--gold-light)" }}>
-              <span style={{ background: "var(--gold-light)", display:"inline-block", width:22, height:2, borderRadius:2 }} />
+            <span className="eyebrow" style={{ color: "#6EE7B7", background: "rgba(16,185,129,0.15)", borderColor: "rgba(16,185,129,0.3)" }}>
               Take Action
             </span>
             <h2 className="cta-band__heading">
@@ -294,7 +300,7 @@ export default function HomePage() {
             </p>
           </div>
           <div className="cta-band__actions">
-            <Link href="/involved#volunteer" className="btn btn--gold">
+            <Link href="/involved#volunteer" className="btn btn--primary">
               Volunteer with Us
             </Link>
             <Link href="/involved#donate" className="btn btn--ghost-light">
@@ -305,157 +311,259 @@ export default function HomePage() {
       </section>
 
       <style>{`
-        /* ---- HERO ---- */
+        /* ---- HERO (Luxury Light Theme: Purple & Light Green) ---- */
         .hero {
           position: relative;
-          min-height: 92vh;
-          display: flex;
-          align-items: flex-end;
-          overflow: hidden;
-        }
-        .hero__img { object-fit: cover; z-index: 0; }
-        .hero__scrim {
-          position: absolute; inset: 0; z-index: 1;
-          background: linear-gradient(
-            180deg,
-            rgba(6,24,14,0.25) 0%,
-            rgba(6,24,14,0.42) 35%,
-            rgba(6,24,14,0.82) 75%,
-            rgba(6,24,14,0.96) 100%
-          );
-        }
-        .hero__content {
-          position: relative; z-index: 2;
-          padding-bottom: 110px;
-          padding-top: 120px;
-          color: #fff;
-        }
-        .hero__eyebrow {
+          min-height: 94vh;
           display: flex;
           align-items: center;
+          overflow: hidden;
+          background: #FAF8FE;
+        }
+
+        /* Layer 1 — luminous multi-color mesh gradient */
+        .hero__gradient-bg {
+          position: absolute; inset: 0; z-index: 0;
+          background:
+            radial-gradient(ellipse 70% 60% at 15% 25%, rgba(124, 58, 237, 0.16) 0%, transparent 60%),
+            radial-gradient(ellipse 65% 70% at 85% 30%, rgba(52, 211, 153, 0.20) 0%, transparent 60%),
+            radial-gradient(ellipse 80% 80% at 50% 85%, rgba(167, 139, 250, 0.14) 0%, transparent 65%),
+            linear-gradient(180deg, #FFFFFF 0%, #FAF8FE 100%);
+          animation: heroGradientShift 14s ease-in-out infinite alternate;
+        }
+
+        /* Layer 2 — luminous floating aura orbs */
+        .hero__orb {
+          position: absolute;
+          border-radius: 50%;
+          filter: blur(65px);
+          pointer-events: none;
+          z-index: 1;
+        }
+        .hero__orb--1 {
+          width: 540px; height: 540px;
+          top: -100px; left: -60px;
+          background: radial-gradient(circle, rgba(124, 58, 237, 0.24) 0%, transparent 70%);
+          animation: orbFloat1 18s ease-in-out infinite;
+        }
+        .hero__orb--2 {
+          width: 440px; height: 440px;
+          top: 10%; right: 4%;
+          background: radial-gradient(circle, rgba(52, 211, 153, 0.26) 0%, transparent 70%);
+          animation: orbFloat2 22s ease-in-out infinite;
+        }
+        .hero__orb--3 {
+          width: 380px; height: 380px;
+          bottom: 12%; left: 30%;
+          background: radial-gradient(circle, rgba(16, 185, 129, 0.20) 0%, transparent 70%);
+          animation: orbFloat3 16s ease-in-out infinite;
+        }
+        .hero__orb--4 {
+          width: 320px; height: 320px;
+          bottom: 20%; right: 20%;
+          background: radial-gradient(circle, rgba(167, 139, 250, 0.22) 0%, transparent 70%);
+          animation: orbFloat4 20s ease-in-out infinite;
+        }
+
+        /* Layer 3 — subtle light dot grid */
+        .hero__grid-overlay {
+          position: absolute; inset: 0; z-index: 1;
+          background-image: radial-gradient(circle, rgba(124, 58, 237, 0.06) 1.2px, transparent 1.2px);
+          background-size: 34px 34px;
+          animation: gridPan 40s linear infinite;
+          pointer-events: none;
+        }
+
+        /* Layer 4 — diagonal shimmer sweep */
+        .hero__shimmer {
+          position: absolute; inset: 0; z-index: 2;
+          background: linear-gradient(
+            115deg,
+            transparent 30%,
+            rgba(124, 58, 237, 0.04) 45%,
+            rgba(52, 211, 153, 0.08) 50%,
+            rgba(124, 58, 237, 0.04) 55%,
+            transparent 70%
+          );
+          background-size: 300% 300%;
+          animation: heroShimmer 10s linear infinite;
+          pointer-events: none;
+        }
+
+        .hero__content {
+          position: relative; z-index: 3;
+          padding-bottom: 110px;
+          padding-top: 140px;
+          color: var(--charcoal);
+        }
+        .hero__eyebrow {
+          display: inline-flex;
+          align-items: center;
           gap: 10px;
-          font-size: 12px;
+          font-size: 12.5px;
           font-weight: 700;
-          letter-spacing: 0.18em;
+          letter-spacing: 0.14em;
           text-transform: uppercase;
-          color: var(--gold-light);
-          margin-bottom: 22px;
+          color: var(--purple-dark);
+          background: var(--purple-tint);
+          border: 1px solid rgba(124, 58, 237, 0.2);
+          padding: 6px 16px;
+          border-radius: var(--radius-pill);
+          margin-bottom: 24px;
         }
         .hero__eyebrow-dot {
           display: inline-block;
           width: 8px; height: 8px;
           border-radius: 50%;
-          background: var(--gold-light);
-          animation: pulse-ring 2s ease-out infinite;
+          background: var(--green);
+          box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6);
+          animation: pulseDot 2s ease-out infinite;
         }
         .hero__title {
           font-family: var(--font-display);
-          font-size: clamp(2.6rem, 5.5vw, 4.2rem);
+          font-size: clamp(2.8rem, 5.8vw, 4.4rem);
           font-weight: 800;
-          line-height: 1.08;
-          color: #ffffff;
-          max-width: 820px;
+          line-height: 1.1;
+          color: var(--charcoal);
+          max-width: 840px;
           letter-spacing: -0.03em;
         }
         .hero__title em {
           font-style: italic;
-          color: var(--gold-light);
+          background: linear-gradient(135deg, #7C3AED 0%, #10B981 100%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+          animation: goldTextShimmer 4s ease-in-out infinite alternate;
         }
         .hero__lede {
           margin-top: 24px;
-          max-width: 580px;
-          font-size: 17px;
-          color: rgba(255,255,255,0.82);
+          max-width: 620px;
+          font-size: 18px;
+          color: var(--muted);
           line-height: 1.72;
         }
         .hero__actions {
           display: flex;
-          gap: 12px;
+          gap: 14px;
           margin-top: 36px;
           flex-wrap: wrap;
         }
         .hero__badges {
           display: flex;
-          gap: 10px;
-          margin-top: 28px;
+          gap: 12px;
+          margin-top: 32px;
           flex-wrap: wrap;
         }
         .hero__badge {
-          font-size: 12px;
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          font-size: 13px;
           font-weight: 700;
-          letter-spacing: 0.04em;
-          color: rgba(255,255,255,0.75);
-          border: 1px solid rgba(255,255,255,0.2);
+          letter-spacing: 0.02em;
+          color: var(--ink);
+          border: 1px solid rgba(124, 58, 237, 0.15);
           border-radius: 999px;
-          padding: 5px 14px;
-          backdrop-filter: blur(4px);
+          padding: 6px 16px;
+          backdrop-filter: blur(10px);
+          background: rgba(255, 255, 255, 0.85);
+          box-shadow: var(--shadow-sm);
+          transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+        }
+        .hero__badge:hover {
+          border-color: var(--purple-light);
+          transform: translateY(-2px);
+          box-shadow: var(--shadow-md);
+        }
+        .badge-check {
+          color: var(--green);
+          font-weight: 900;
         }
         .hero__scroll {
           position: absolute;
           right: 48px;
           bottom: 120px;
-          z-index: 3;
+          z-index: 4;
           display: flex;
           flex-direction: column;
           align-items: center;
           gap: 8px;
-          color: rgba(255,255,255,0.45);
+          color: var(--muted-light);
           font-size: 10px;
-          letter-spacing: 0.12em;
+          letter-spacing: 0.14em;
           text-transform: uppercase;
           font-weight: 700;
         }
         .hero__scroll-line {
-          width: 1px; height: 56px;
-          background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.5));
+          width: 2px; height: 54px;
+          background: linear-gradient(to bottom, var(--purple-light), var(--green));
+          border-radius: 2px;
+          animation: scrollLinePulse 2s ease-in-out infinite;
         }
         @media (max-width: 720px) { .hero__scroll { display: none; } }
-        .hero__arc { position: absolute; left: 0; right: 0; bottom: -1px; z-index: 2; line-height: 0; }
+        .hero__arc { position: absolute; left: 0; right: 0; bottom: -1px; z-index: 4; line-height: 0; }
+
+        /* Hero entrance animations */
+        .anim-hero-1 { animation: heroFadeUp 0.9s cubic-bezier(0.16,1,0.3,1) 0.1s both; }
+        .anim-hero-2 { animation: heroFadeUp 0.9s cubic-bezier(0.16,1,0.3,1) 0.25s both; }
+        .anim-hero-3 { animation: heroFadeUp 0.9s cubic-bezier(0.16,1,0.3,1) 0.4s both; }
+        .anim-hero-4 { animation: heroFadeUp 0.9s cubic-bezier(0.16,1,0.3,1) 0.55s both; }
+        .anim-hero-5 { animation: heroFadeUp 0.9s cubic-bezier(0.16,1,0.3,1) 0.7s both; }
 
         /* ---- STATS ---- */
         .stats-section {
-          background: var(--off-white);
-          padding-top: 72px;
-          padding-bottom: 72px;
+          padding-top: 80px;
+          padding-bottom: 80px;
+          background: var(--white);
         }
         .stats-grid {
           display: grid;
           grid-template-columns: repeat(4, 1fr);
-          gap: 24px;
+          gap: 28px;
         }
         @media (max-width: 860px) { .stats-grid { grid-template-columns: repeat(2, 1fr); } }
         @media (max-width: 480px) { .stats-grid { grid-template-columns: 1fr; } }
 
         .stat-card {
           background: var(--white);
-          border: 1px solid var(--line);
+          border: 1px solid rgba(124, 58, 237, 0.08);
           border-radius: var(--radius-lg);
-          padding: 32px 24px 28px;
+          padding: 34px 26px 30px;
           box-shadow: var(--shadow-sm);
           position: relative;
           overflow: hidden;
-          transition: transform 0.25s ease, box-shadow 0.25s ease;
+          transition: transform 0.28s cubic-bezier(0.16,1,0.3,1), box-shadow 0.28s ease, border-color 0.28s ease;
         }
         .stat-card:hover {
           transform: translateY(-6px);
           box-shadow: var(--shadow-md);
+          border-color: rgba(124, 58, 237, 0.22);
         }
         .stat-card::before {
           content: "";
           position: absolute;
           top: 0; left: 0; right: 0;
-          height: 3px;
-          background: linear-gradient(90deg, var(--emerald-mid), var(--gold));
+          height: 4px;
+          background: linear-gradient(90deg, #7C3AED, #10B981);
         }
         .stat-card__icon {
-          color: var(--emerald-light);
-          margin-bottom: 18px;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          width: 52px; height: 52px;
+          border-radius: 14px;
+          background: linear-gradient(135deg, rgba(124, 58, 237, 0.1), rgba(16, 185, 129, 0.12));
+          color: var(--purple);
+          margin-bottom: 20px;
         }
         .stat-card__value {
           font-family: var(--font-display);
           font-size: 48px;
           font-weight: 800;
-          color: var(--emerald);
+          background: linear-gradient(135deg, #7C3AED 0%, #059669 100%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
           line-height: 1;
           letter-spacing: -0.03em;
         }
@@ -463,12 +571,12 @@ export default function HomePage() {
           font-weight: 800;
           font-size: 14px;
           color: var(--charcoal);
-          margin-top: 8px;
+          margin-top: 10px;
           text-transform: uppercase;
           letter-spacing: 0.06em;
         }
         .stat-card__note {
-          font-size: 13px;
+          font-size: 13.5px;
           color: var(--muted);
           margin-top: 8px;
           line-height: 1.55;
@@ -484,8 +592,7 @@ export default function HomePage() {
         @media (max-width: 860px) {
           .about-strip__grid { grid-template-columns: 1fr; gap: 40px; }
         }
-        .about-strip__body { }
-        .about-strip__body h2 { font-size: clamp(1.8rem, 3vw, 2.6rem); margin-top: 6px; }
+        .about-strip__body h2 { font-size: clamp(2rem, 3.2vw, 2.7rem); margin-top: 6px; }
         .about-strip__text {
           margin-top: 20px;
           font-size: 16.5px;
@@ -501,45 +608,49 @@ export default function HomePage() {
         .about-chip {
           font-size: 13px;
           font-weight: 700;
-          padding: 6px 16px;
+          padding: 7px 18px;
           border-radius: 999px;
-          background: var(--emerald-tint);
-          color: var(--emerald);
-          border: 1px solid rgba(13,74,46,0.15);
+          background: var(--white);
+          color: var(--purple-dark);
+          border: 1px solid rgba(124, 58, 237, 0.15);
+          box-shadow: 0 2px 6px rgba(124, 58, 237, 0.04);
         }
         .about-strip__img-wrap { position: relative; }
         .about-strip__img-frame {
           position: relative;
-          border-radius: 0 40px 0 40px;
+          border-radius: 0 44px 0 44px;
           overflow: hidden;
           box-shadow: var(--shadow-lg);
+          border: 4px solid var(--white);
         }
         .about-strip__img {
           width: 100%;
           height: 520px !important;
           object-fit: cover;
           display: block;
-          transition: transform 0.6s ease;
+          transition: transform 0.6s cubic-bezier(0.16,1,0.3,1);
         }
         .about-strip__img-frame:hover .about-strip__img { transform: scale(1.04); }
         .about-strip__img-badge {
           position: absolute;
           bottom: 24px;
-          left: -24px;
+          left: -20px;
           background: var(--white);
-          border-radius: 16px;
-          padding: 18px 22px;
+          border-radius: 18px;
+          padding: 18px 24px;
           box-shadow: var(--shadow-md);
           display: flex;
           flex-direction: column;
           align-items: center;
           line-height: 1.2;
-          border: 2px solid var(--emerald-tint);
+          border: 2px solid rgba(124, 58, 237, 0.12);
         }
         .about-strip__img-badge strong {
           font-family: var(--font-display);
-          font-size: 36px;
-          color: var(--emerald);
+          font-size: 38px;
+          background: linear-gradient(135deg, #7C3AED, #10B981);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
           font-weight: 800;
         }
         .about-strip__img-badge span {
@@ -558,7 +669,7 @@ export default function HomePage() {
 
         /* ---- FOCUS SECTION ---- */
         .focus-section__intro { text-align: center; margin-bottom: 56px; }
-        .focus-section__intro h2 { font-size: clamp(1.9rem, 3.2vw, 2.7rem); margin-top: 8px; }
+        .focus-section__intro h2 { font-size: clamp(2rem, 3.4vw, 2.8rem); margin-top: 8px; }
         .focus-section__intro .kicker { margin: 16px auto 0; text-align: center; }
 
         .focus-grid {
@@ -576,30 +687,31 @@ export default function HomePage() {
           border-radius: var(--radius-lg);
           overflow: hidden;
           box-shadow: var(--shadow-sm);
-          border: 1px solid var(--line);
+          border: 1px solid rgba(124, 58, 237, 0.08);
           text-decoration: none;
           color: inherit;
-          transition: transform 0.28s ease, box-shadow 0.28s ease;
+          transition: transform 0.28s cubic-bezier(0.16,1,0.3,1), box-shadow 0.28s ease, border-color 0.28s ease;
         }
         .focus-card:hover {
           transform: translateY(-8px);
           box-shadow: var(--shadow-lg);
+          border-color: rgba(124, 58, 237, 0.25);
         }
         .focus-card__img-wrap {
           position: relative;
-          height: 200px;
+          height: 210px;
           overflow: hidden;
         }
         .focus-card__img {
           width: 100% !important;
           height: 100% !important;
           object-fit: cover;
-          transition: transform 0.5s ease;
+          transition: transform 0.5s cubic-bezier(0.16,1,0.3,1);
         }
         .focus-card:hover .focus-card__img { transform: scale(1.08); }
         .focus-card__overlay {
           position: absolute; inset: 0;
-          background: linear-gradient(to top, rgba(9,46,30,0.6) 0%, transparent 60%);
+          background: linear-gradient(to top, rgba(24, 19, 43, 0.6) 0%, transparent 60%);
         }
         .focus-card__emoji {
           position: absolute;
@@ -607,21 +719,21 @@ export default function HomePage() {
           font-size: 26px;
           filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4));
         }
-        .focus-card__body { padding: 22px 22px 26px; flex: 1; display: flex; flex-direction: column; gap: 6px; }
+        .focus-card__body { padding: 24px 24px 28px; flex: 1; display: flex; flex-direction: column; gap: 6px; }
         .focus-card__mr {
           font-size: 13px;
           font-weight: 700;
-          color: var(--gold);
+          color: var(--purple);
         }
         .focus-card__title {
           font-family: var(--font-display);
-          font-size: 20px;
+          font-size: 21px;
           font-weight: 700;
-          color: var(--emerald-deep);
+          color: var(--charcoal);
           letter-spacing: -0.01em;
         }
         .focus-card__text {
-          font-size: 14px;
+          font-size: 14.5px;
           color: var(--muted);
           line-height: 1.65;
           flex: 1;
@@ -629,14 +741,13 @@ export default function HomePage() {
         }
         .focus-card__cta {
           margin-top: 14px;
-          font-size: 13px;
+          font-size: 13.5px;
           font-weight: 800;
-          color: var(--emerald);
-          letter-spacing: 0.04em;
-          text-transform: uppercase;
+          color: var(--purple);
+          letter-spacing: 0.02em;
           transition: color 0.2s;
         }
-        .focus-card:hover .focus-card__cta { color: var(--gold); }
+        .focus-card:hover .focus-card__cta { color: var(--green); }
 
         /* ---- TIMELINE ---- */
         .timeline-section { position: relative; }
@@ -648,7 +759,7 @@ export default function HomePage() {
         }
         @media (max-width: 860px) { .timeline-grid { grid-template-columns: 1fr; gap: 36px; } }
 
-        .timeline-intro h2 { font-size: clamp(1.8rem, 3vw, 2.5rem); margin-top: 8px; }
+        .timeline-intro h2 { font-size: clamp(2rem, 3.2vw, 2.7rem); margin-top: 8px; }
 
         .timeline-list {
           list-style: none;
@@ -660,49 +771,51 @@ export default function HomePage() {
           display: flex;
           align-items: center;
           gap: 16px;
-          padding: 16px 20px;
+          padding: 18px 22px;
           background: rgba(255,255,255,0.06);
-          border: 1px solid rgba(255,255,255,0.1);
-          border-radius: 12px;
+          border: 1px solid rgba(255,255,255,0.12);
+          border-radius: 14px;
           font-weight: 600;
           font-size: 15px;
-          color: rgba(255,255,255,0.78);
+          color: rgba(255,255,255,0.85);
+          backdrop-filter: blur(8px);
           transition: background 0.2s;
         }
         .timeline-item.is-done {
-          background: rgba(201,146,42,0.1);
-          border-color: rgba(201,146,42,0.25);
-          color: rgba(255,255,255,0.95);
+          background: rgba(16, 185, 129, 0.12);
+          border-color: rgba(52, 211, 153, 0.35);
+          color: rgba(255,255,255,0.98);
         }
         .timeline-item__marker {
           display: flex;
           align-items: center;
           justify-content: center;
-          width: 34px; height: 34px;
+          width: 36px; height: 36px;
           border-radius: 50%;
           background: rgba(255,255,255,0.1);
-          color: rgba(255,255,255,0.6);
+          color: rgba(255,255,255,0.7);
           font-size: 13px;
           font-weight: 800;
           flex-shrink: 0;
-          border: 1.5px solid rgba(255,255,255,0.2);
+          border: 1.5px solid rgba(255,255,255,0.25);
         }
         .timeline-item.is-done .timeline-item__marker {
-          background: var(--gold);
-          color: var(--emerald-deep);
+          background: linear-gradient(135deg, #10B981, #34D399);
+          color: #064E3B;
           border-color: transparent;
-          box-shadow: 0 4px 14px var(--gold-glow);
+          box-shadow: 0 4px 14px rgba(16, 185, 129, 0.4);
         }
         .timeline-item__label { flex: 1; }
         .timeline-item__done-tag {
-          font-size: 10px;
+          font-size: 10.5px;
           font-weight: 800;
-          letter-spacing: 0.1em;
+          letter-spacing: 0.08em;
           text-transform: uppercase;
-          color: var(--gold-light);
-          border: 1px solid rgba(201,146,42,0.35);
+          color: #6EE7B7;
+          background: rgba(16, 185, 129, 0.2);
+          border: 1px solid rgba(52, 211, 153, 0.4);
           border-radius: 999px;
-          padding: 3px 10px;
+          padding: 4px 12px;
           white-space: nowrap;
         }
 
@@ -717,52 +830,54 @@ export default function HomePage() {
 
         .press-card {
           background: var(--white);
-          border: 1px solid var(--line);
+          border: 1px solid rgba(124, 58, 237, 0.08);
           border-radius: var(--radius-lg);
           overflow: hidden;
           box-shadow: var(--shadow-sm);
-          transition: transform 0.25s ease, box-shadow 0.25s ease;
+          transition: transform 0.28s cubic-bezier(0.16,1,0.3,1), box-shadow 0.28s ease, border-color 0.28s ease;
         }
         .press-card:hover {
           transform: translateY(-6px);
           box-shadow: var(--shadow-md);
+          border-color: rgba(124, 58, 237, 0.2);
         }
         .press-card__img-wrap {
           position: relative;
-          height: 210px;
+          height: 220px;
           overflow: hidden;
         }
         .press-card__img {
           width: 100% !important;
           height: 100% !important;
           object-fit: cover;
-          transition: transform 0.4s ease;
+          transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
         }
         .press-card:hover .press-card__img { transform: scale(1.06); }
         .press-card__outlet {
           position: absolute;
           top: 14px; left: 14px;
-          background: var(--emerald);
+          background: var(--purple-dark);
           color: #fff;
-          font-size: 10px;
+          font-size: 11px;
           font-weight: 800;
-          letter-spacing: 0.1em;
+          letter-spacing: 0.08em;
           text-transform: uppercase;
           border-radius: 999px;
-          padding: 4px 12px;
+          padding: 5px 14px;
+          box-shadow: 0 4px 12px rgba(0,0,0,0.15);
         }
-        .press-card__body { padding: 20px 20px 24px; }
+        .press-card__body { padding: 22px 22px 26px; }
         .press-card__date {
           font-size: 12px;
           font-weight: 700;
-          color: var(--gold);
+          color: var(--green-deep);
           letter-spacing: 0.06em;
           text-transform: uppercase;
           margin-bottom: 10px;
         }
         .press-card__mr {
           font-weight: 700;
-          color: var(--emerald-deep);
+          color: var(--charcoal);
           font-size: 15px;
           line-height: 1.5;
           margin-bottom: 8px;
@@ -788,12 +903,13 @@ export default function HomePage() {
           border-radius: var(--radius-lg);
           overflow: hidden;
           box-shadow: var(--shadow-sm);
-          border: 1px solid var(--line);
-          transition: transform 0.25s ease, box-shadow 0.25s ease;
+          border: 1px solid rgba(124, 58, 237, 0.08);
+          transition: transform 0.28s cubic-bezier(0.16,1,0.3,1), box-shadow 0.28s ease, border-color 0.28s ease;
         }
         .award-card:hover {
           transform: translateY(-5px);
           box-shadow: var(--shadow-md);
+          border-color: rgba(16, 185, 129, 0.3);
         }
         @media (max-width: 540px) {
           .award-card { grid-template-columns: 1fr; }
@@ -805,19 +921,19 @@ export default function HomePage() {
           height: 100% !important;
           object-fit: cover;
           display: block;
-          transition: transform 0.4s ease;
+          transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
         }
         .award-card:hover .award-card__img { transform: scale(1.06); }
-        .award-card__body { padding: 24px; display: flex; flex-direction: column; gap: 10px; justify-content: center; }
+        .award-card__body { padding: 26px; display: flex; flex-direction: column; gap: 10px; justify-content: center; }
         .award-card__title {
-          font-size: 18px;
+          font-size: 19px;
           font-weight: 700;
-          color: var(--emerald-deep);
+          color: var(--charcoal);
           letter-spacing: -0.01em;
           margin-top: 4px;
         }
         .award-card__detail {
-          font-size: 13.5px;
+          font-size: 14px;
           color: var(--muted);
           line-height: 1.6;
         }
@@ -833,7 +949,7 @@ export default function HomePage() {
         .cta-band__bg-img { position: absolute; inset: 0; z-index: 0; }
         .cta-band__scrim {
           position: absolute; inset: 0; z-index: 1;
-          background: linear-gradient(105deg, rgba(6,24,14,0.92) 40%, rgba(13,74,46,0.75) 100%);
+          background: linear-gradient(105deg, rgba(24, 19, 43, 0.94) 40%, rgba(15, 59, 46, 0.85) 100%);
         }
         .cta-band__inner {
           position: relative; z-index: 2;
@@ -849,15 +965,15 @@ export default function HomePage() {
           .cta-band__inner { grid-template-columns: 1fr; gap: 32px; }
         }
         .cta-band__heading {
-          font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+          font-size: clamp(2rem, 3.4vw, 2.7rem);
           color: #fff;
           margin-top: 12px;
           letter-spacing: -0.02em;
         }
         .cta-band__sub {
           margin-top: 16px;
-          font-size: 16px;
-          color: rgba(255,255,255,0.72);
+          font-size: 16.5px;
+          color: rgba(255,255,255,0.76);
           max-width: 520px;
           line-height: 1.72;
         }

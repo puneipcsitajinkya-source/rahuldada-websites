@@ -17,7 +17,7 @@ export default function Header() {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
+    const onScroll = () => setScrolled(window.scrollY > 30);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
@@ -28,17 +28,26 @@ export default function Header() {
         {/* ---- Brand ---- */}
         <Link href="/" className="brand" onClick={() => setOpen(false)}>
           <span className="brand__mark" aria-hidden="true">
-            <svg viewBox="0 0 56 56" width="44" height="44" fill="none">
-              {/* Stylised leaf + water drop */}
-              <circle cx="28" cy="28" r="27" fill="rgba(201,146,42,0.15)" />
+            <svg viewBox="0 0 56 56" width="42" height="42" fill="none">
+              <defs>
+                <linearGradient id="brandGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#7C3AED" />
+                  <stop offset="100%" stopColor="#10B981" />
+                </linearGradient>
+                <linearGradient id="leafGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#10B981" />
+                  <stop offset="100%" stopColor="#34D399" />
+                </linearGradient>
+              </defs>
+              <circle cx="28" cy="28" r="26" fill="rgba(124, 58, 237, 0.08)" stroke="rgba(124, 58, 237, 0.15)" strokeWidth="1.5" />
               <path
-                d="M28 44 C14 44 8 34 8 26 C8 18 18 10 28 10 C38 10 48 18 48 26 C48 34 42 44 28 44Z"
-                fill="var(--emerald-mid)"
-                opacity="0.9"
+                d="M28 42 C16 42 10 33 10 25 C10 17 20 10 28 10 C36 10 46 17 46 25 C46 33 40 42 28 42Z"
+                fill="url(#brandGrad)"
               />
               <path
-                d="M20 28 C22 22 28 18 28 18 C28 18 34 22 36 28 C36 34 32 38 28 38 C24 38 20 34 20 28Z"
-                fill="var(--gold)"
+                d="M22 27 C23 21 28 17 28 17 C28 17 33 21 34 27 C34 32 31 35 28 35 C25 35 22 32 22 27Z"
+                fill="#FFFFFF"
+                opacity="0.95"
               />
             </svg>
           </span>
@@ -61,7 +70,7 @@ export default function Header() {
           </ul>
           <Link
             href="/involved#donate"
-            className="btn btn--gold nav-cta"
+            className="btn btn--primary nav-cta"
             onClick={() => setOpen(false)}
           >
             Donate
@@ -87,15 +96,16 @@ export default function Header() {
           position: sticky;
           top: 0;
           z-index: 100;
-          background: rgba(9, 46, 30, 0.97);
+          background: rgba(255, 255, 255, 0.88);
           backdrop-filter: blur(20px);
           -webkit-backdrop-filter: blur(20px);
-          border-bottom: 1px solid rgba(255,255,255,0.06);
-          transition: box-shadow 0.3s ease, background 0.3s ease;
+          border-bottom: 1px solid rgba(124, 58, 237, 0.08);
+          transition: box-shadow 0.3s ease, background 0.3s ease, border-color 0.3s ease;
         }
         .site-header.is-scrolled {
-          box-shadow: 0 4px 32px rgba(9,46,30,0.35);
-          background: rgba(9, 46, 30, 0.99);
+          box-shadow: 0 10px 30px -5px rgba(124, 58, 237, 0.08), 0 2px 6px rgba(16, 185, 129, 0.04);
+          background: rgba(255, 255, 255, 0.96);
+          border-bottom-color: rgba(124, 58, 237, 0.12);
         }
 
         .site-header__row {
@@ -117,7 +127,7 @@ export default function Header() {
           align-items: center;
           justify-content: center;
           flex-shrink: 0;
-          transition: transform 0.3s ease;
+          transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .brand:hover .brand__mark { transform: rotate(-8deg) scale(1.08); }
 
@@ -128,17 +138,19 @@ export default function Header() {
         }
         .brand__text strong {
           font-family: var(--font-display);
-          font-size: 20px;
+          font-size: 21px;
           font-weight: 700;
-          color: #ffffff;
-          letter-spacing: -0.01em;
+          color: var(--charcoal);
+          letter-spacing: -0.02em;
         }
         .brand__text small {
           font-size: 11px;
-          letter-spacing: 0.1em;
+          letter-spacing: 0.12em;
           text-transform: uppercase;
-          color: var(--gold-light);
-          font-weight: 600;
+          background: linear-gradient(90deg, #7C3AED, #059669);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          font-weight: 700;
         }
 
         /* ---- Desktop Nav links ---- */
@@ -154,55 +166,62 @@ export default function Header() {
         }
         .site-nav ul li a {
           display: block;
-          padding: 8px 14px;
+          padding: 8px 16px;
           font-weight: 600;
-          font-size: 14px;
-          letter-spacing: 0.02em;
-          color: rgba(255,255,255,0.82);
-          border-radius: 8px;
+          font-size: 14.5px;
+          letter-spacing: 0.01em;
+          color: var(--ink);
+          border-radius: var(--radius-pill);
           position: relative;
           transition: color 0.2s, background 0.2s;
         }
         .site-nav ul li a::after {
           content: "";
           position: absolute;
-          left: 14px;
-          right: 14px;
-          bottom: 5px;
+          left: 16px;
+          right: 16px;
+          bottom: 4px;
           height: 2px;
-          background: var(--gold-light);
+          background: linear-gradient(90deg, #7C3AED, #10B981);
           border-radius: 2px;
           transform: scaleX(0);
           transition: transform 0.25s ease;
           transform-origin: center;
         }
-        .site-nav ul li a:hover { color: #ffffff; background: rgba(255,255,255,0.07); }
+        .site-nav ul li a:hover {
+          color: var(--purple);
+          background: var(--purple-pale);
+        }
         .site-nav ul li a:hover::after { transform: scaleX(1); }
 
-        .nav-cta { padding: 11px 26px; font-size: 14px; }
+        .nav-cta {
+          padding: 10px 24px;
+          font-size: 14px;
+        }
 
         /* ---- Mobile toggle ---- */
         .nav-toggle {
           display: none;
           flex-direction: column;
           gap: 5px;
-          background: none;
-          border: none;
-          padding: 8px;
+          background: var(--purple-pale);
+          border: 1px solid rgba(124, 58, 237, 0.15);
+          border-radius: 10px;
+          padding: 10px;
           cursor: pointer;
         }
         .nav-toggle span {
           display: block;
-          width: 24px;
+          width: 22px;
           height: 2px;
-          background: rgba(255,255,255,0.85);
+          background: var(--charcoal);
           border-radius: 2px;
           transition: transform 0.28s ease, opacity 0.2s ease;
           transform-origin: center;
         }
-        .nav-toggle.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .nav-toggle.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); background: var(--purple); }
         .nav-toggle.is-open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
-        .nav-toggle.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+        .nav-toggle.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); background: var(--purple); }
 
         /* ---- Mobile breakpoint ---- */
         @media (max-width: 900px) {
@@ -213,26 +232,27 @@ export default function Header() {
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(9, 46, 30, 0.98);
+            background: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(24px);
             flex-direction: column;
             align-items: flex-start;
-            padding: 40px 28px;
-            gap: 8px;
+            padding: 36px 28px;
+            gap: 12px;
             transform: translateX(100%);
-            transition: transform 0.32s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1);
             overflow-y: auto;
+            border-top: 1px solid rgba(124, 58, 237, 0.08);
           }
           .site-nav.is-open { transform: translateX(0); }
-          .site-nav ul { flex-direction: column; gap: 4px; width: 100%; }
+          .site-nav ul { flex-direction: column; gap: 6px; width: 100%; }
           .site-nav ul li a {
-            font-size: 22px;
-            padding: 14px 6px;
-            border-radius: 0;
-            border-bottom: 1px solid rgba(255,255,255,0.08);
+            font-size: 20px;
+            padding: 14px 12px;
+            border-radius: 12px;
+            border-bottom: 1px solid rgba(124, 58, 237, 0.06);
           }
           .site-nav ul li a::after { display: none; }
-          .nav-cta { margin-top: 24px; width: 100%; justify-content: center; font-size: 16px; padding: 16px; }
+          .nav-cta { margin-top: 20px; width: 100%; justify-content: center; font-size: 16px; padding: 15px; }
         }
       `}</style>
     </header>
