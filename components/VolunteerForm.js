@@ -67,36 +67,46 @@ export default function VolunteerForm() {
           {DAYS.map((d) => <option key={d} value={d}>{d}</option>)}
         </select>
       </label>
-      <button type="submit" className="btn btn--clay">Join as a volunteer</button>
+      <button type="submit" className="btn btn--gold">Join as a Volunteer →</button>
 
       <style>{`
-        .volunteer-form { display: flex; flex-direction: column; gap: 18px; }
-        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+        .volunteer-form { display: flex; flex-direction: column; gap: 16px; }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
         @media (max-width: 560px) { .form-row { grid-template-columns: 1fr; } }
-        .volunteer-form label { display: flex; flex-direction: column; gap: 6px; font-weight: 600; font-size: 14px; color: var(--forest-deep); }
+        .volunteer-form label {
+          display: flex; flex-direction: column; gap: 5px;
+          font-weight: 700; font-size: 13px;
+          text-transform: uppercase; letter-spacing: 0.06em;
+          color: var(--charcoal);
+        }
         .volunteer-form input, .volunteer-form select {
           font-family: var(--font-body);
           font-size: 15px;
-          padding: 12px 14px;
-          border: 1.5px solid var(--line);
-          border-radius: 4px 12px 4px 12px;
-          background: var(--cream);
-          color: var(--ink);
+          padding: 12px 16px;
+          border: 1.5px solid var(--line-strong);
+          border-radius: 10px;
+          background: var(--off-white);
+          color: var(--charcoal);
+          transition: border-color 0.2s, box-shadow 0.2s;
         }
         .volunteer-form input:focus, .volunteer-form select:focus {
-          outline: 2px solid var(--sky);
-          border-color: var(--sky);
+          outline: none;
+          border-color: var(--emerald-light);
+          box-shadow: 0 0 0 3px rgba(42,144,96,0.15);
         }
-        .volunteer-form button { align-self: flex-start; margin-top: 6px; }
+        .volunteer-form input::placeholder { color: var(--muted-light); }
+        .volunteer-form button { align-self: flex-start; margin-top: 4px; }
 
         .form-success {
-          padding: 34px;
-          background: var(--leaf-tint);
-          border-radius: 4px 22px 4px 22px;
+          padding: 40px 32px;
+          background: var(--emerald-tint);
+          border-radius: var(--radius-lg);
           text-align: center;
+          border: 1px solid rgba(13,74,46,0.15);
         }
-        .form-success h3 { margin-top: 10px; }
-        .form-success p:last-child { margin-top: 10px; color: rgba(22,36,28,0.75); }
+        .form-success .tag-pill { margin-bottom: 12px; }
+        .form-success h3 { font-size: 22px; color: var(--emerald-deep); margin-top: 8px; }
+        .form-success p:last-child { margin-top: 10px; color: var(--muted); font-size: 14.5px; }
       `}</style>
     </form>
   );

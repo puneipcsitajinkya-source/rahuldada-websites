@@ -40,27 +40,39 @@ export default function ContactForm() {
         Message
         <textarea required name="message" value={form.message} onChange={handleChange} rows={5} placeholder="How can we help?" />
       </label>
-      <button type="submit" className="btn btn--clay">Send message</button>
+      <button type="submit" className="btn btn--gold">Send Message →</button>
 
       <style>{`
-        .contact-form { display: flex; flex-direction: column; gap: 16px; margin-top: 20px; }
-        .contact-form label { display: flex; flex-direction: column; gap: 6px; font-weight: 600; font-size: 14px; color: var(--forest-deep); }
+        .contact-form { display: flex; flex-direction: column; gap: 16px; margin-top: 8px; }
+        .contact-form label {
+          display: flex; flex-direction: column; gap: 5px;
+          font-weight: 700; font-size: 13px;
+          text-transform: uppercase; letter-spacing: 0.06em;
+          color: var(--charcoal);
+        }
         .contact-form input, .contact-form textarea {
           font-family: var(--font-body);
           font-size: 15px;
-          padding: 12px 14px;
-          border: 1.5px solid var(--line);
-          border-radius: 4px 12px 4px 12px;
-          background: var(--cream);
-          color: var(--ink);
+          padding: 12px 16px;
+          border: 1.5px solid var(--line-strong);
+          border-radius: 10px;
+          background: var(--off-white);
+          color: var(--charcoal);
           resize: vertical;
+          transition: border-color 0.2s, box-shadow 0.2s;
         }
-        .contact-form input:focus, .contact-form textarea:focus { outline: 2px solid var(--sky); border-color: var(--sky); }
+        .contact-form input:focus, .contact-form textarea:focus {
+          outline: none;
+          border-color: var(--emerald-light);
+          box-shadow: 0 0 0 3px rgba(42,144,96,0.15);
+        }
+        .contact-form input::placeholder, .contact-form textarea::placeholder { color: var(--muted-light); }
         .contact-form button { align-self: flex-start; margin-top: 4px; }
 
         .contact-success { padding: 10px 0; }
-        .contact-success h4 { margin-top: 10px; font-family: var(--font-display); font-size: 20px; }
-        .contact-success p { margin-top: 8px; color: rgba(22,36,28,0.72); }
+        .contact-success .tag-pill { margin-bottom: 8px; }
+        .contact-success h4 { font-family: var(--font-display); font-size: 22px; color: var(--emerald-deep); margin-top: 10px; }
+        .contact-success p { margin-top: 8px; color: var(--muted); font-size: 14.5px; }
       `}</style>
     </form>
   );
