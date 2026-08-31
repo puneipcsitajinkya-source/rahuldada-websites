@@ -1,7 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import ArcDivider from "@/components/ArcDivider";
-import { impactStats, focusAreas, timeline2026, press, awards, org } from "@/lib/siteData";
+import HeroSlider from "@/components/HeroSlider";
+import { impactStats, paanpoiNetwork, focusAreas, timeline2026, press, awards, org } from "@/lib/siteData";
 
 export const metadata = {
   title: "Navchaitanya Yuva Mandal — Water, Birds & Villages, Shiroli",
@@ -35,65 +36,9 @@ export default function HomePage() {
   return (
     <>
       {/* ============================================================
-          HERO (Premium Luminous Light Theme: Purple & Light Green)
+          HERO SLIDER (Full-bleed 3-Image Slider with Ground Impact)
       ============================================================ */}
-      <section className="hero">
-        {/* ---- Animated radiant gradient background layers ---- */}
-        <div className="hero__gradient-bg" aria-hidden="true" />
-        <div className="hero__orb hero__orb--1" aria-hidden="true" />
-        <div className="hero__orb hero__orb--2" aria-hidden="true" />
-        <div className="hero__orb hero__orb--3" aria-hidden="true" />
-        <div className="hero__orb hero__orb--4" aria-hidden="true" />
-        <div className="hero__grid-overlay" aria-hidden="true" />
-        <div className="hero__shimmer" aria-hidden="true" />
-
-        <div className="hero__content wrap">
-          <p className="hero__eyebrow anim-hero-1">
-            <span className="hero__eyebrow-dot" />
-            Shiroli, Yavatmal · since {org.established}
-          </p>
-          <h1 className="hero__title anim-hero-2">
-            Water for the thirsty.<br />
-            <em>Roots for the rains still to come.</em>
-          </h1>
-          <p className="hero__lede anim-hero-3">
-            Every summer, as ponds crack dry and mercury climbs past 44 °C, we
-            hang clay water bowls on ten routes for birds — and every monsoon,
-            we plant the trees that will shade the next generation.
-          </p>
-          <div className="hero__actions anim-hero-4">
-            <Link href="/involved#donate" className="btn btn--primary">
-              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-              Donate Now
-            </Link>
-            <Link href="/involved#volunteer" className="btn btn--outline">Become a Volunteer</Link>
-            <Link href="/work" className="btn btn--outline">See Our Work</Link>
-          </div>
-
-          {/* Floating trust badges */}
-          <div className="hero__badges anim-hero-5">
-            <span className="hero__badge">
-              <span className="badge-check">✓</span> Registered NGO
-            </span>
-            <span className="hero__badge">
-              <span className="badge-check">✓</span> 20+ Years Active
-            </span>
-            <span className="hero__badge">
-              <span className="badge-check">✓</span> 3 State Awards
-            </span>
-          </div>
-        </div>
-
-        {/* Scroll indicator */}
-        <div className="hero__scroll">
-          <div className="hero__scroll-line" />
-          <span>Scroll</span>
-        </div>
-
-        <div className="hero__arc">
-          <ArcDivider color="var(--white)" />
-        </div>
-      </section>
+      <HeroSlider />
 
       {/* ============================================================
           IMPACT STATS
@@ -106,7 +51,9 @@ export default function HomePage() {
                 <div className="stat-card__icon">{statIcons[i]}</div>
                 <p className="stat-card__value">{s.value}</p>
                 <p className="stat-card__label">{s.label}</p>
-                <p className="stat-card__note">{s.note}</p>
+                <div className="stat-card__note-wrap">
+                  <p className="stat-card__note">{s.note}</p>
+                </div>
               </div>
             ))}
           </div>
@@ -311,206 +258,6 @@ export default function HomePage() {
       </section>
 
       <style>{`
-        /* ---- HERO (Luxury Light Theme: Purple & Light Green) ---- */
-        .hero {
-          position: relative;
-          min-height: 94vh;
-          display: flex;
-          align-items: center;
-          overflow: hidden;
-          background: #FAF8FE;
-        }
-
-        /* Layer 1 — luminous multi-color mesh gradient */
-        .hero__gradient-bg {
-          position: absolute; inset: 0; z-index: 0;
-          background:
-            radial-gradient(ellipse 70% 60% at 15% 25%, rgba(124, 58, 237, 0.16) 0%, transparent 60%),
-            radial-gradient(ellipse 65% 70% at 85% 30%, rgba(52, 211, 153, 0.20) 0%, transparent 60%),
-            radial-gradient(ellipse 80% 80% at 50% 85%, rgba(167, 139, 250, 0.14) 0%, transparent 65%),
-            linear-gradient(180deg, #FFFFFF 0%, #FAF8FE 100%);
-          animation: heroGradientShift 14s ease-in-out infinite alternate;
-        }
-
-        /* Layer 2 — luminous floating aura orbs */
-        .hero__orb {
-          position: absolute;
-          border-radius: 50%;
-          filter: blur(65px);
-          pointer-events: none;
-          z-index: 1;
-        }
-        .hero__orb--1 {
-          width: 540px; height: 540px;
-          top: -100px; left: -60px;
-          background: radial-gradient(circle, rgba(124, 58, 237, 0.24) 0%, transparent 70%);
-          animation: orbFloat1 18s ease-in-out infinite;
-        }
-        .hero__orb--2 {
-          width: 440px; height: 440px;
-          top: 10%; right: 4%;
-          background: radial-gradient(circle, rgba(52, 211, 153, 0.26) 0%, transparent 70%);
-          animation: orbFloat2 22s ease-in-out infinite;
-        }
-        .hero__orb--3 {
-          width: 380px; height: 380px;
-          bottom: 12%; left: 30%;
-          background: radial-gradient(circle, rgba(16, 185, 129, 0.20) 0%, transparent 70%);
-          animation: orbFloat3 16s ease-in-out infinite;
-        }
-        .hero__orb--4 {
-          width: 320px; height: 320px;
-          bottom: 20%; right: 20%;
-          background: radial-gradient(circle, rgba(167, 139, 250, 0.22) 0%, transparent 70%);
-          animation: orbFloat4 20s ease-in-out infinite;
-        }
-
-        /* Layer 3 — subtle light dot grid */
-        .hero__grid-overlay {
-          position: absolute; inset: 0; z-index: 1;
-          background-image: radial-gradient(circle, rgba(124, 58, 237, 0.06) 1.2px, transparent 1.2px);
-          background-size: 34px 34px;
-          animation: gridPan 40s linear infinite;
-          pointer-events: none;
-        }
-
-        /* Layer 4 — diagonal shimmer sweep */
-        .hero__shimmer {
-          position: absolute; inset: 0; z-index: 2;
-          background: linear-gradient(
-            115deg,
-            transparent 30%,
-            rgba(124, 58, 237, 0.04) 45%,
-            rgba(52, 211, 153, 0.08) 50%,
-            rgba(124, 58, 237, 0.04) 55%,
-            transparent 70%
-          );
-          background-size: 300% 300%;
-          animation: heroShimmer 10s linear infinite;
-          pointer-events: none;
-        }
-
-        .hero__content {
-          position: relative; z-index: 3;
-          padding-bottom: 110px;
-          padding-top: 140px;
-          color: var(--charcoal);
-        }
-        .hero__eyebrow {
-          display: inline-flex;
-          align-items: center;
-          gap: 10px;
-          font-size: 12.5px;
-          font-weight: 700;
-          letter-spacing: 0.14em;
-          text-transform: uppercase;
-          color: var(--purple-dark);
-          background: var(--purple-tint);
-          border: 1px solid rgba(124, 58, 237, 0.2);
-          padding: 6px 16px;
-          border-radius: var(--radius-pill);
-          margin-bottom: 24px;
-        }
-        .hero__eyebrow-dot {
-          display: inline-block;
-          width: 8px; height: 8px;
-          border-radius: 50%;
-          background: var(--green);
-          box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6);
-          animation: pulseDot 2s ease-out infinite;
-        }
-        .hero__title {
-          font-family: var(--font-display);
-          font-size: clamp(2.8rem, 5.8vw, 4.4rem);
-          font-weight: 800;
-          line-height: 1.1;
-          color: var(--charcoal);
-          max-width: 840px;
-          letter-spacing: -0.03em;
-        }
-        .hero__title em {
-          font-style: italic;
-          background: linear-gradient(135deg, #7C3AED 0%, #10B981 100%);
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          background-clip: text;
-          animation: goldTextShimmer 4s ease-in-out infinite alternate;
-        }
-        .hero__lede {
-          margin-top: 24px;
-          max-width: 620px;
-          font-size: 18px;
-          color: var(--muted);
-          line-height: 1.72;
-        }
-        .hero__actions {
-          display: flex;
-          gap: 14px;
-          margin-top: 36px;
-          flex-wrap: wrap;
-        }
-        .hero__badges {
-          display: flex;
-          gap: 12px;
-          margin-top: 32px;
-          flex-wrap: wrap;
-        }
-        .hero__badge {
-          display: inline-flex;
-          align-items: center;
-          gap: 6px;
-          font-size: 13px;
-          font-weight: 700;
-          letter-spacing: 0.02em;
-          color: var(--ink);
-          border: 1px solid rgba(124, 58, 237, 0.15);
-          border-radius: 999px;
-          padding: 6px 16px;
-          backdrop-filter: blur(10px);
-          background: rgba(255, 255, 255, 0.85);
-          box-shadow: var(--shadow-sm);
-          transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
-        }
-        .hero__badge:hover {
-          border-color: var(--purple-light);
-          transform: translateY(-2px);
-          box-shadow: var(--shadow-md);
-        }
-        .badge-check {
-          color: var(--green);
-          font-weight: 900;
-        }
-        .hero__scroll {
-          position: absolute;
-          right: 48px;
-          bottom: 120px;
-          z-index: 4;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          gap: 8px;
-          color: var(--muted-light);
-          font-size: 10px;
-          letter-spacing: 0.14em;
-          text-transform: uppercase;
-          font-weight: 700;
-        }
-        .hero__scroll-line {
-          width: 2px; height: 54px;
-          background: linear-gradient(to bottom, var(--purple-light), var(--green));
-          border-radius: 2px;
-          animation: scrollLinePulse 2s ease-in-out infinite;
-        }
-        @media (max-width: 720px) { .hero__scroll { display: none; } }
-        .hero__arc { position: absolute; left: 0; right: 0; bottom: -1px; z-index: 4; line-height: 0; }
-
-        /* Hero entrance animations */
-        .anim-hero-1 { animation: heroFadeUp 0.9s cubic-bezier(0.16,1,0.3,1) 0.1s both; }
-        .anim-hero-2 { animation: heroFadeUp 0.9s cubic-bezier(0.16,1,0.3,1) 0.25s both; }
-        .anim-hero-3 { animation: heroFadeUp 0.9s cubic-bezier(0.16,1,0.3,1) 0.4s both; }
-        .anim-hero-4 { animation: heroFadeUp 0.9s cubic-bezier(0.16,1,0.3,1) 0.55s both; }
-        .anim-hero-5 { animation: heroFadeUp 0.9s cubic-bezier(0.16,1,0.3,1) 0.7s both; }
-
         /* ---- STATS ---- */
         .stats-section {
           padding-top: 80px;
@@ -520,25 +267,28 @@ export default function HomePage() {
         .stats-grid {
           display: grid;
           grid-template-columns: repeat(4, 1fr);
-          gap: 28px;
+          gap: 24px;
         }
-        @media (max-width: 860px) { .stats-grid { grid-template-columns: repeat(2, 1fr); } }
-        @media (max-width: 480px) { .stats-grid { grid-template-columns: 1fr; } }
+        @media (max-width: 990px) { .stats-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 540px) { .stats-grid { grid-template-columns: 1fr; } }
 
         .stat-card {
           background: var(--white);
           border: 1px solid rgba(124, 58, 237, 0.08);
           border-radius: var(--radius-lg);
-          padding: 34px 26px 30px;
-          box-shadow: var(--shadow-sm);
+          padding: 30px 24px 26px;
+          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
           position: relative;
           overflow: hidden;
+          display: flex;
+          flex-direction: column;
+          height: 380px;
           transition: transform 0.28s cubic-bezier(0.16,1,0.3,1), box-shadow 0.28s ease, border-color 0.28s ease;
         }
         .stat-card:hover {
           transform: translateY(-6px);
-          box-shadow: var(--shadow-md);
-          border-color: rgba(124, 58, 237, 0.22);
+          box-shadow: 0 12px 30px rgba(124, 58, 237, 0.1);
+          border-color: rgba(124, 58, 237, 0.25);
         }
         .stat-card::before {
           content: "";
@@ -551,35 +301,64 @@ export default function HomePage() {
           display: inline-flex;
           align-items: center;
           justify-content: center;
-          width: 52px; height: 52px;
+          width: 50px; height: 50px;
           border-radius: 14px;
           background: linear-gradient(135deg, rgba(124, 58, 237, 0.1), rgba(16, 185, 129, 0.12));
           color: var(--purple);
-          margin-bottom: 20px;
+          margin-bottom: 16px;
+          flex-shrink: 0;
         }
         .stat-card__value {
           font-family: var(--font-display);
-          font-size: 48px;
+          font-size: 44px;
           font-weight: 800;
           background: linear-gradient(135deg, #7C3AED 0%, #059669 100%);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           line-height: 1;
           letter-spacing: -0.03em;
+          flex-shrink: 0;
         }
         .stat-card__label {
           font-weight: 800;
-          font-size: 14px;
+          font-size: 13.5px;
           color: var(--charcoal);
           margin-top: 10px;
           text-transform: uppercase;
-          letter-spacing: 0.06em;
+          letter-spacing: 0.05em;
+          flex-shrink: 0;
+          min-height: 38px;
+          display: flex;
+          align-items: center;
+        }
+        .stat-card__note-wrap {
+          flex: 1;
+          margin-top: 10px;
+          overflow-y: auto;
+          padding-right: 6px;
+          /* Sleek custom scrollbar */
+          scrollbar-width: thin;
+          scrollbar-color: rgba(124, 58, 237, 0.3) rgba(124, 58, 237, 0.05);
+        }
+        .stat-card__note-wrap::-webkit-scrollbar {
+          width: 5px;
+        }
+        .stat-card__note-wrap::-webkit-scrollbar-track {
+          background: rgba(124, 58, 237, 0.05);
+          border-radius: 999px;
+        }
+        .stat-card__note-wrap::-webkit-scrollbar-thumb {
+          background: rgba(124, 58, 237, 0.28);
+          border-radius: 999px;
+        }
+        .stat-card__note-wrap::-webkit-scrollbar-thumb:hover {
+          background: var(--purple);
         }
         .stat-card__note {
           font-size: 13.5px;
           color: var(--muted);
-          margin-top: 8px;
-          line-height: 1.55;
+          line-height: 1.6;
+          white-space: pre-line;
         }
 
         /* ---- ABOUT STRIP ---- */

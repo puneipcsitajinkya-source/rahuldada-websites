@@ -103,7 +103,7 @@ export default function InvolvedPage() {
                 <div className="tier-card__amount">{t.amount}</div>
                 <p className="tier-card__impact">{t.impact}</p>
                 <a
-                  href="mailto:info@navchaitanyayuvamandal.org"
+                  href="mailto:navchaitanys@gmail.com"
                   className="btn btn--outline tier-card__btn"
                 >
                   Donate {t.amount}
@@ -165,7 +165,7 @@ export default function InvolvedPage() {
               impact for your CSR team.
             </p>
             <a
-              href="mailto:info@navchaitanyayuvamandal.org"
+              href="mailto:navchaitanys@gmail.com"
               className="btn btn--primary csr-card__btn"
             >
               Request a Proposal

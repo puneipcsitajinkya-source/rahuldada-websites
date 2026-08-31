@@ -5,15 +5,15 @@ import { useState, useEffect } from "react";
 import { org } from "@/lib/siteData";
 
 const NAV = [
-  { href: "/about",    label: "About" },
-  { href: "/work",     label: "Our Work" },
-  { href: "/gallery",  label: "Gallery" },
+  { href: "/about", label: "About" },
+  { href: "/work", label: "Our Work" },
+  { href: "/gallery", label: "Gallery" },
   { href: "/involved", label: "Get Involved" },
-  { href: "/contact",  label: "Contact" },
+  { href: "/contact", label: "Contact" },
 ];
 
 export default function Header() {
-  const [open, setOpen]       = useState(false);
+  const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -28,32 +28,13 @@ export default function Header() {
         {/* ---- Brand ---- */}
         <Link href="/" className="brand" onClick={() => setOpen(false)}>
           <span className="brand__mark" aria-hidden="true">
-            <svg viewBox="0 0 56 56" width="42" height="42" fill="none">
-              <defs>
-                <linearGradient id="brandGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="#7C3AED" />
-                  <stop offset="100%" stopColor="#10B981" />
-                </linearGradient>
-                <linearGradient id="leafGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="#10B981" />
-                  <stop offset="100%" stopColor="#34D399" />
-                </linearGradient>
-              </defs>
-              <circle cx="28" cy="28" r="26" fill="rgba(124, 58, 237, 0.08)" stroke="rgba(124, 58, 237, 0.15)" strokeWidth="1.5" />
-              <path
-                d="M28 42 C16 42 10 33 10 25 C10 17 20 10 28 10 C36 10 46 17 46 25 C46 33 40 42 28 42Z"
-                fill="url(#brandGrad)"
-              />
-              <path
-                d="M22 27 C23 21 28 17 28 17 C28 17 33 21 34 27 C34 32 31 35 28 35 C25 35 22 32 22 27Z"
-                fill="#FFFFFF"
-                opacity="0.95"
-              />
-            </svg>
+            <img src="/images/logo.jpeg" height={50} width={50} alt="Navchaitanya" />
+
           </span>
           <span className="brand__text">
-            <strong>Navchaitanya</strong>
-            <small>Yuva Mandal · Shiroli</small>
+            <span className="brand__line-1">Navchaitanya</span>
+            <span className="brand__line-2">BAHUUDDESHIYA VIKAS</span>
+            <span className="brand__line-3">YUVA MANDAL · SHIROLI</span>
           </span>
         </Link>
 
@@ -134,23 +115,44 @@ export default function Header() {
         .brand__text {
           display: flex;
           flex-direction: column;
-          line-height: 1.18;
+          justify-content: center;
+          width: fit-content;
         }
-        .brand__text strong {
+        .brand__line-1 {
           font-family: var(--font-display);
-          font-size: 21px;
-          font-weight: 700;
-          color: var(--charcoal);
-          letter-spacing: -0.02em;
-        }
-        .brand__text small {
-          font-size: 11px;
-          letter-spacing: 0.12em;
-          text-transform: uppercase;
-          background: linear-gradient(90deg, #7C3AED, #059669);
+          font-size: 22px;
+          font-weight: 800;
+          letter-spacing: -0.01em;
+          line-height: 1.05;
+          background: linear-gradient(135deg, #2E1065 0%, #7C3AED 55%, #059669 100%);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
-          font-weight: 700;
+          background-clip: text;
+          display: block;
+        }
+        .brand__line-2 {
+          font-family: var(--font-body);
+          font-size: 8.6px;
+          font-weight: 800;
+          letter-spacing: 0.165em;
+          text-transform: uppercase;
+          color: #7C3AED;
+          line-height: 1.25;
+          display: block;
+          margin-top: 2px;
+          white-space: nowrap;
+        }
+        .brand__line-3 {
+          font-family: var(--font-body);
+          font-size: 8.1px;
+          font-weight: 800;
+          letter-spacing: 0.145em;
+          text-transform: uppercase;
+          color: #059669;
+          line-height: 1.25;
+          display: block;
+          margin-top: 1px;
+          white-space: nowrap;
         }
 
         /* ---- Desktop Nav links ---- */
