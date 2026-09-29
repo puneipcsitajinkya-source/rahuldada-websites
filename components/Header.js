@@ -1,5 +1,4 @@
 "use client";
-
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { org } from "@/lib/siteData";
@@ -9,12 +8,22 @@ const NAV = [
   { href: "/work", label: "Our Work" },
   { href: "/gallery", label: "Gallery" },
   { href: "/involved", label: "Get Involved" },
+  {
+    href: "/news",
+    label: "News",
+    children: [
+      { href: "/news/press-release", label: "Press Release" },
+      { href: "/news/media-coverage", label: "Media Coverage" },
+    ],
+  },
   { href: "/contact", label: "Contact" },
+  { href: "/compliances", label: "Compliances" }
 ];
 
 export default function Header() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [mobileDropdown, setMobileDropdown] = useState(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 30);
@@ -41,13 +50,59 @@ export default function Header() {
         {/* ---- Desktop Nav ---- */}
         <nav className={`site-nav ${open ? "is-open" : ""}`} aria-label="Primary navigation">
           <ul>
-            {NAV.map((item) => (
-              <li key={item.href}>
-                <Link href={item.href} onClick={() => setOpen(false)}>
-                  {item.label}
-                </Link>
-              </li>
-            ))}
+            {NAV.map((item) =>
+              item.children ? (
+                <li key={item.href} className="has-dropdown">
+                  <Link href={item.href} onClick={() => setOpen(false)}>
+                    {item.label}
+                    <svg className="dropdown-arrow" width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </Link>
+                  {/* Desktop hover dropdown */}
+                  <ul className="dropdown-menu">
+                    {item.children.map((child) => (
+                      <li key={child.href}>
+                        <Link href={child.href} onClick={() => setOpen(false)}>
+                          {child.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                  {/* Mobile expand button */}
+                  <button
+                    className={`mobile-dropdown-toggle ${mobileDropdown === item.href ? "is-open" : ""}`}
+                    aria-label="Expand sub-menu"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setMobileDropdown(mobileDropdown === item.href ? null : item.href);
+                    }}
+                  >
+                    <svg width="12" height="7" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </button>
+                  {/* Mobile sub-menu */}
+                  {mobileDropdown === item.href && (
+                    <ul className="mobile-submenu">
+                      {item.children.map((child) => (
+                        <li key={child.href}>
+                          <Link href={child.href} onClick={() => { setOpen(false); setMobileDropdown(null); }}>
+                            {child.label}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </li>
+              ) : (
+                <li key={item.href}>
+                  <Link href={item.href} onClick={() => setOpen(false)}>
+                    {item.label}
+                  </Link>
+                </li>
+              )
+            )}
           </ul>
           <Link
             href="/involved#donate"
@@ -159,29 +214,34 @@ export default function Header() {
         .site-nav {
           display: flex;
           align-items: center;
-          gap: 32px;
+          gap: 20px;
+          flex-shrink: 1;
+          min-width: 0;
         }
         .site-nav ul {
           display: flex;
-          gap: 6px;
+          gap: 2px;
           list-style: none;
+          flex-shrink: 1;
+          min-width: 0;
         }
         .site-nav ul li a {
           display: block;
-          padding: 8px 16px;
+          padding: 8px 12px;
           font-weight: 600;
-          font-size: 14.5px;
+          font-size: 14px;
           letter-spacing: 0.01em;
           color: var(--ink);
           border-radius: var(--radius-pill);
           position: relative;
           transition: color 0.2s, background 0.2s;
+          white-space: nowrap;
         }
         .site-nav ul li a::after {
           content: "";
           position: absolute;
-          left: 16px;
-          right: 16px;
+          left: 12px;
+          right: 12px;
           bottom: 4px;
           height: 2px;
           background: linear-gradient(90deg, #7C3AED, #10B981);
@@ -197,8 +257,93 @@ export default function Header() {
         .site-nav ul li a:hover::after { transform: scaleX(1); }
 
         .nav-cta {
-          padding: 10px 24px;
-          font-size: 14px;
+          padding: 10px 20px;
+          font-size: 13.5px;
+          white-space: nowrap;
+          flex-shrink: 0;
+        }
+
+        /* ---- Dropdown (Desktop) ---- */
+        .has-dropdown {
+          position: relative;
+        }
+        .has-dropdown > a {
+          display: flex !important;
+          align-items: center;
+          gap: 5px;
+        }
+        .dropdown-arrow {
+          transition: transform 0.25s ease;
+          flex-shrink: 0;
+        }
+        .has-dropdown:hover .dropdown-arrow {
+          transform: rotate(180deg);
+        }
+        .dropdown-menu {
+          position: absolute;
+          top: 100%;
+          left: 50%;
+          transform: translateX(-50%) translateY(4px);
+          min-width: 200px;
+          background: rgba(255, 255, 255, 0.96);
+          backdrop-filter: blur(20px);
+          -webkit-backdrop-filter: blur(20px);
+          border: 1px solid rgba(124, 58, 237, 0.1);
+          border-radius: 12px;
+          box-shadow: 0 12px 36px -6px rgba(124, 58, 237, 0.12), 0 6px 16px rgba(16, 185, 129, 0.06);
+          padding: 8px 0;
+          list-style: none;
+          opacity: 0;
+          visibility: hidden;
+          pointer-events: none;
+          transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s ease;
+          z-index: 110;
+          flex-direction: column;
+        }
+        .dropdown-menu::before {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 20px;
+          right: 20px;
+          height: 3px;
+          background: linear-gradient(90deg, #7C3AED, #10B981);
+          border-radius: 0 0 3px 3px;
+        }
+        .has-dropdown:hover .dropdown-menu {
+          opacity: 1;
+          visibility: visible;
+          pointer-events: auto;
+          transform: translateX(-50%) translateY(0);
+        }
+        .dropdown-menu li a {
+          display: block;
+          padding: 10px 20px !important;
+          font-size: 13.5px !important;
+          font-weight: 600;
+          color: var(--ink);
+          transition: background 0.18s, color 0.18s, padding-left 0.18s;
+          border-radius: 0 !important;
+          white-space: nowrap;
+        }
+        .dropdown-menu li a::after {
+          display: none !important;
+        }
+        .dropdown-menu li a:hover {
+          background: var(--purple-pale) !important;
+          color: var(--purple) !important;
+          padding-left: 24px !important;
+        }
+        .dropdown-menu li:first-child a {
+          border-radius: 8px 8px 0 0 !important;
+        }
+        .dropdown-menu li:last-child a {
+          border-radius: 0 0 8px 8px !important;
+        }
+
+        /* Mobile dropdown toggle (hidden on desktop) */
+        .mobile-dropdown-toggle {
+          display: none;
         }
 
         /* ---- Mobile toggle ---- */
@@ -255,6 +400,61 @@ export default function Header() {
           }
           .site-nav ul li a::after { display: none; }
           .nav-cta { margin-top: 20px; width: 100%; justify-content: center; font-size: 16px; padding: 15px; }
+
+          /* Hide desktop dropdown, show mobile toggle */
+          .dropdown-menu { display: none !important; }
+          .dropdown-arrow { display: none; }
+          .has-dropdown {
+            position: relative;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            width: 100%;
+          }
+          .has-dropdown > a {
+            flex: 1;
+          }
+          .mobile-dropdown-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            background: var(--purple-pale);
+            border: 1px solid rgba(124, 58, 237, 0.12);
+            border-radius: 10px;
+            cursor: pointer;
+            color: var(--purple);
+            transition: background 0.2s, transform 0.2s;
+            flex-shrink: 0;
+          }
+          .mobile-dropdown-toggle:hover {
+            background: var(--purple-tint);
+          }
+          .mobile-dropdown-toggle.is-open svg {
+            transform: rotate(180deg);
+          }
+          .mobile-submenu {
+            width: 100%;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+          }
+          .mobile-submenu li a {
+            font-size: 17px !important;
+            padding: 12px 12px 12px 28px !important;
+            color: var(--muted) !important;
+            border-bottom: none !important;
+            background: var(--purple-pale);
+            border-radius: 10px !important;
+          }
+          .mobile-submenu li a:hover {
+            color: var(--purple) !important;
+            background: var(--purple-tint) !important;
+          }
         }
       `}</style>
     </header>
