@@ -6,8 +6,8 @@ import { photoCategories, videoList, yearFilters } from "@/lib/galleryData";
 
 export default function GalleryPage() {
   const [activeTab, setActiveTab] = useState("photo"); // "photo" | "video"
-  const [activeCategory, setActiveCategory] = useState("all");
-  const [activeYear, setActiveYear] = useState("all");
+  const [activeCategory, setActiveCategory] = useState(photoCategories[0]?.id || "water-conservation");
+  const [activeYear, setActiveYear] = useState(yearFilters[0]?.id || "2026–27");
   const [lightbox, setLightbox] = useState(null); // current image object
   const [activeVideo, setActiveVideo] = useState(null); // current video object
 
@@ -17,22 +17,21 @@ export default function GalleryPage() {
   // Filter images based on Category AND Year
   const filteredImages = useMemo(() => {
     return allImages.filter((img) => {
-      const matchCat = activeCategory === "all" || img.category === activeCategory;
-      const matchYear = activeYear === "all" || img.fiscalYear === activeYear;
+      const matchCat = img.category === activeCategory;
+      const matchYear = img.fiscalYear === activeYear;
       return matchCat && matchYear;
     });
   }, [allImages, activeCategory, activeYear]);
 
   // Dynamic counts for Year Filters based on selected Category
   const dynamicYearCounts = useMemo(() => {
-    const counts = { all: 0 };
+    const counts = {};
     yearFilters.forEach((yf) => {
-      if (yf.id !== "all") counts[yf.id] = 0;
+      counts[yf.id] = 0;
     });
 
     allImages.forEach((img) => {
-      if (activeCategory === "all" || img.category === activeCategory) {
-        counts.all += 1;
+      if (img.category === activeCategory) {
         if (counts[img.fiscalYear] !== undefined) {
           counts[img.fiscalYear] += 1;
         }
@@ -41,15 +40,24 @@ export default function GalleryPage() {
     return counts;
   }, [allImages, activeCategory]);
 
-  const currentCategoryMeta =
-    activeCategory === "all"
-      ? {
-        title: "All Photographs",
-        marathi: "सर्व छायाचित्रे",
-        emoji: "📸",
-        desc: "Complete visual archive of Navchaitanya Yuva Mandal across Vidarbha.",
+  const handleCategoryChange = (catId) => {
+    setActiveCategory(catId);
+    const cat = photoCategories.find((c) => c.id === catId);
+    if (cat && cat.images.length > 0) {
+      const currentYearHasImages = cat.images.some((img) => img.fiscalYear === activeYear);
+      if (!currentYearHasImages) {
+        const firstAvailableYear = yearFilters.find((yf) =>
+          cat.images.some((img) => img.fiscalYear === yf.id)
+        );
+        if (firstAvailableYear) {
+          setActiveYear(firstAvailableYear.id);
+        }
       }
-      : photoCategories.find((c) => c.id === activeCategory);
+    }
+  };
+
+  const currentCategoryMeta =
+    photoCategories.find((c) => c.id === activeCategory) || photoCategories[0];
 
   // Lightbox keyboard controls
   useEffect(() => {
@@ -125,22 +133,13 @@ export default function GalleryPage() {
               <div className="gallery-filter-group">
                 <div className="gallery-filter-label">Category:</div>
                 <div className="gallery-cats" role="tablist" aria-label="Photo category filters">
-                  <button
-                    role="tab"
-                    aria-selected={activeCategory === "all"}
-                    className={`gallery-cat-pill ${activeCategory === "all" ? "is-active" : ""}`}
-                    onClick={() => setActiveCategory("all")}
-                  >
-                    <span className="gallery-cat-pill__emoji">✨</span>
-                    All ({allImages.length})
-                  </button>
                   {photoCategories.map((cat) => (
                     <button
                       key={cat.id}
                       role="tab"
                       aria-selected={activeCategory === cat.id}
                       className={`gallery-cat-pill ${activeCategory === cat.id ? "is-active" : ""}`}
-                      onClick={() => setActiveCategory(cat.id)}
+                      onClick={() => handleCategoryChange(cat.id)}
                     >
                       <span className="gallery-cat-pill__emoji">{cat.emoji}</span>
                       {cat.title} ({cat.images.length})
@@ -168,8 +167,9 @@ export default function GalleryPage() {
                         key={yf.id}
                         role="tab"
                         aria-selected={activeYear === yf.id}
-                        className={`gallery-date-pill ${activeYear === yf.id ? "is-active" : ""}`}
+                        className={`gallery-date-pill ${activeYear === yf.id ? "is-active" : ""} ${count === 0 ? "is-disabled" : ""}`}
                         onClick={() => setActiveYear(yf.id)}
+                        disabled={count === 0}
                       >
                         {yf.label} ({count})
                       </button>
@@ -185,7 +185,7 @@ export default function GalleryPage() {
                     <h2 className="gallery-cat-header__title">
                       <span className="gallery-cat-header__emoji">{currentCategoryMeta.emoji}</span>
                       {currentCategoryMeta.title}
-                      {activeYear !== "all" && (
+                      {activeYear && (
                         <span className="gallery-year-badge">Year: {activeYear}</span>
                       )}
                     </h2>
@@ -207,8 +207,8 @@ export default function GalleryPage() {
                   <button
                     className="gallery-cat-pill"
                     onClick={() => {
-                      setActiveCategory("all");
-                      setActiveYear("all");
+                      setActiveCategory(photoCategories[0].id);
+                      setActiveYear(yearFilters[0].id);
                     }}
                   >
                     Reset Filters
@@ -625,6 +625,15 @@ export default function GalleryPage() {
           color: #fff;
           border-color: var(--purple);
           box-shadow: 0 4px 12px rgba(124, 58, 237, 0.25);
+        }
+        .gallery-date-pill:disabled,
+        .gallery-date-pill.is-disabled {
+          opacity: 0.35;
+          cursor: not-allowed;
+          background: #f8fafc;
+          border-color: #e2e8f0;
+          color: #94a3b8;
+          box-shadow: none;
         }
 
         /* ---- CATEGORY HEADER ---- */
