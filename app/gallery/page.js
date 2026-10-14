@@ -295,12 +295,13 @@ export default function GalleryPage() {
                     aria-label={`Play video: ${vid.title}`}
                   >
                     <div className="video-card__thumb-wrap">
-                      <Image
-                        src={vid.thumbnail}
-                        alt={vid.title}
-                        fill
-                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      <video
+                        src={`${vid.src}#t=1`}
+                        preload="metadata"
+                        muted
+                        playsInline
                         className="video-card__thumb"
+                        aria-hidden="true"
                       />
                       <div className="video-card__play">
                         <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor">
@@ -835,9 +836,15 @@ export default function GalleryPage() {
           overflow: hidden;
         }
         .video-card__thumb {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
           object-fit: cover;
-          opacity: 0.85;
+          opacity: 0.88;
           transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s;
+          pointer-events: none;
         }
         .video-card:hover .video-card__thumb {
           transform: scale(1.07);

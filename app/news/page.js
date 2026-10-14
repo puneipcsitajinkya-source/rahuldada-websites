@@ -14,10 +14,7 @@ export default function NewsPage() {
         <div className="wrap news-hero__inner">
           <span className="eyebrow">News &amp; Media</span>
           <h1>Stay Updated with Navchaitanya</h1>
-          <p className="kicker">
-            Read our official press releases, view media coverage, and stay informed
-            about the impact we're making across Yavatmal district.
-          </p>
+
         </div>
       </section>
 
@@ -34,7 +31,7 @@ export default function NewsPage() {
               </p>
               <span className="news-card__cta">
                 View Press Releases
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
               </span>
             </Link>
             <Link href="/news/media-coverage" className="news-card news-card--mc">
@@ -46,7 +43,7 @@ export default function NewsPage() {
               </p>
               <span className="news-card__cta">
                 View Media Coverage
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
               </span>
             </Link>
           </div>
@@ -58,7 +55,7 @@ export default function NewsPage() {
         .news-hero {
           position: relative;
           overflow: hidden;
-          padding: 100px 0 80px;
+          padding: 70px 0 80px;
           text-align: center;
           background: linear-gradient(160deg, #FAF8FE 0%, #F5F3FF 40%, #ECFDF5 100%);
         }
@@ -96,7 +93,7 @@ export default function NewsPage() {
 
         /* ---- Cards Section ---- */
         .news-cards-section {
-          padding: 60px 0 100px;
+          padding: 50px 0 100px;
           background: var(--white);
         }
         .news-cards {
