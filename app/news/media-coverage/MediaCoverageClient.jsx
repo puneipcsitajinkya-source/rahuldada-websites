@@ -26,10 +26,21 @@ const mediaItems = [
     date: "1 May 2026",
     source: "Navchaitanya Ground Media Archive",
     type: "Video",
-    title: "Field Survey & Wildlife Documentation (1 May 2026)",
+    title: "1 May 2026",
     summary:
-      "Direct ground video documentation recording natural water catchments, summer bird paanpoi refill points, and biodiversity habitat surveys.",
+      " ",
     videoSrc: "/gallery/videos/videos-09.mp4",
+    isFeatured: true,
+  },
+  {
+    id: "mc-video-10",
+    date: "13 April 2021",
+    source: "Navchaitanya Ground Media Archive",
+    type: "Video",
+    title: "13 April 2021",
+    summary:
+      " ",
+    videoSrc: "/gallery/videos/newsvideo.mp4",
     isFeatured: true,
   }
 ];
@@ -99,7 +110,7 @@ export default function MediaCoverageClient() {
                   {isVideoItem ? (
                     <div
                       className="mc-card__video-preview"
-                      onClick={() => setActiveVideoModal(featuredVideoData)}
+                      onClick={() => setActiveVideoModal(item)}
                     >
                       <video
                         src={`${item.videoSrc}#t=1`}
@@ -146,15 +157,6 @@ export default function MediaCoverageClient() {
 
                     <p className="mc-card__summary">{item.summary}</p>
 
-                    <div className="mc-card__footer">
-                      <button
-                        type="button"
-                        className="mc-card__action-btn"
-                        onClick={() => setActiveVideoModal(featuredVideoData)}
-                      >
-                        Play Video Stream →
-                      </button>
-                    </div>
                   </div>
                 </article>
               );
