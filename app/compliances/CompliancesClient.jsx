@@ -9,6 +9,16 @@ import Link from "next/link";
 
 const annualReports = [
   {
+    id: "ar-2023-24",
+    year: "2023–2024",
+    label: "FY 2023–24",
+    title: "Annual Activity Report",
+    status: "latest",
+    size: "Official PDF",
+    pdfHref: "/compliances/annual-reports/Annual%20Report%202023-24.pdf",
+    fileName: "Annual Report 2023-24.pdf",
+  },
+  {
     id: "ar-2025-26",
     year: "2025–2026",
     label: "FY 2025–26",
